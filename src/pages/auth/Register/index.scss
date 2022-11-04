@@ -1,0 +1,15 @@
+.register-page{
+  .form-register{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-left: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+
+    .ant-form{
+      width: 50vw;
+    }
+}
+}
