@@ -3,18 +3,22 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import reportWebVitals from "./reportWebVitals";
-import "./index.css";
+import "./index.scss";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "antd/dist/antd.min.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const container = document.getElementById("root")!;
 const root = createRoot(container);
+const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

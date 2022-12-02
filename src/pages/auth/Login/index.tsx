@@ -1,29 +1,33 @@
-import { Button, Form, Input } from "antd";
-import { useForm } from "antd/es/form/Form";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { AxiosResponse } from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { auth, googleAuthProvider } from "../../../firebase";
 import useAuth from "../../../hooks/useAuth";
+import { createOrUpdateUser } from "../../../utils/auth";
+import LoginTab from "../../../components/login";
+import RegisterTab from "../../../components/register";
+import "./styles.scss";
+
+export type Tablist = "Login" | "Register";
 
 function Login() {
   const { unsubcribeUser } = useAuth();
   const navigate = useNavigate();
-  const [form] = useForm();
-  const [disabledSave, setDisabledSave] = useState(true);
+
   const { auth: user } = useAuth();
 
-  useEffect(() => {
-    if (user && user.idToken) navigate("/");
-  }, [user]);
+  const [tab, setTab] = useState<Tablist>("Login");
 
-  const handleFormChange = () => {
-    console.log(form.getFieldsValue());
-    const hasErrors =
-      form.getFieldsError().some(({ errors }) => errors.length) ||
-      !form.getFieldsValue().email ||
-      !form.getFieldsValue().password;
-    setDisabledSave(hasErrors);
+  // useEffect(() => {
+  //   if (user && user.idToken) navigate("/");
+  // }, [user]);
+
+  const onClickTabLogin = () => {
+    setTab("Login");
+  };
+  const onClickRegister = () => {
+    setTab("Register");
   };
 
   const googleLogin = async () => {
@@ -32,88 +36,64 @@ function Login() {
       .then(async (result) => {
         const { user } = result;
         const idTokenResult = await user.getIdTokenResult();
-        if (user.email) {
-          unsubcribeUser({
-            email: user.email,
-            idToken: idTokenResult.token,
-          });
-        }
+        createOrUpdateUser(idTokenResult.token)
+          .then((res: AxiosResponse) => {
+            unsubcribeUser({
+              email: res.data.email,
+              idToken: idTokenResult.token,
+              name: res.data.name,
+              role: res.data.role,
+              _id: res.data._id,
+            });
+          })
+          .catch();
         navigate("/");
       })
       .catch((error) => toast.error(error.toString().slice(24)));
   };
 
-  const login = async (e: any) => {
-    try {
-      const result = await auth.signInWithEmailAndPassword(
-        auth.getAuth(),
-        e.email,
-        e.password
-      );
-      const { user } = result;
-      const idTokenResult = await user.getIdTokenResult();
-      if (user.email) {
-        unsubcribeUser({
-          email: user.email,
-          idToken: idTokenResult.token,
-        });
-      }
-      navigate("/");
-    } catch (error: any) {
-      toast.error(error.toString().slice(24));
-    }
-  };
-
   return (
-    <div className="login-page">
-      <div className="form-login">
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          onFinish={login}
-          autoComplete="off"
-          onFieldsChange={handleFormChange}
-          form={form}
-        >
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              {
-                type: "email",
-                message: "The input is not valid E-mail!",
-              },
-              {
-                required: true,
-                message: "Please input your E-mail!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your password!",
-              },
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit" disabled={disabledSave}>
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-        <Button onClick={googleLogin} type="primary">
-          login with email
-        </Button>
-        <Link to="/forgot/password"> Forgot Password</Link>
+    <div className="login-page-container">
+      <div className="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17">
+        <div className="container">
+          <div className="form-box">
+            <div className="form-tab">
+              <ul className="nav nav-pills nav-fill" role="tablist">
+                <li className="nav-item" onClick={onClickTabLogin}>
+                  <div
+                    className={`nav-link ${tab === "Login" ? "active" : ""}`}
+                    id="signin-tab-2"
+                    data-toggle="tab"
+                    role="tab"
+                    aria-controls="signin-2"
+                    aria-selected="false"
+                  >
+                    Sign In
+                  </div>
+                </li>
+                <li className="nav-item" onClick={onClickRegister}>
+                  <div
+                    className={`nav-link ${tab === "Register" ? "active" : ""}`}
+                    id="register-tab-2"
+                    data-toggle="tab"
+                    role="tab"
+                    aria-controls="register-2"
+                    aria-selected="true"
+                  >
+                    Register
+                  </div>
+                </li>
+              </ul>
+              <div className="tab-content">
+                {tab === "Login" ? (
+                  <LoginTab googleLogin={googleLogin} />
+                ) : (
+                  <RegisterTab googleLogin={googleLogin} />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

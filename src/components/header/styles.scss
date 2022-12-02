@@ -1,0 +1,27 @@
+.header-container{
+  .container{
+    display: flex;
+  }
+  .ant-menu-horizontal{
+    border-bottom: unset
+  }
+ 
+    .sub-menu-hover {
+     
+
+   ul {
+    min-width: 80px;
+    li {
+          display: flex;
+    align-items: center;
+    justify-content: center
+   }
+   }
+   
+  }
+  .sub-menu-hover :hover{
+    color: #1890ff;
+   cursor: pointer;
+   
+  }
+}
