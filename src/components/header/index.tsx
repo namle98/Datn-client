@@ -52,7 +52,7 @@ function Header() {
                 >
                   <Link to="/">
                     <Tooltip placement="bottom" color="#1890ff" title={"Home"}>
-                      <HomeOutlined style={{ fontSize: "20px" }} />
+                      <HomeOutlined style={{ fontSize: "22px" }} />
                     </Tooltip>
                   </Link>
                 </li>
@@ -176,7 +176,7 @@ function Header() {
                         color="#1890ff"
                         title={"Login"}
                       >
-                        <UserAddOutlined style={{ fontSize: "20px" }} />
+                        <UserAddOutlined style={{ fontSize: "22px" }} />
                       </Tooltip>
                     </Link>
                   </li>

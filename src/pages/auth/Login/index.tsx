@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { auth, googleAuthProvider } from "../../../firebase";
@@ -23,11 +23,23 @@ function Login() {
   //   if (user && user.idToken) navigate("/");
   // }, [user]);
 
+  useEffect(() => {
+    if (user && user.idToken) navigate("/user/history");
+  }, [user]);
+
   const onClickTabLogin = () => {
     setTab("Login");
   };
   const onClickRegister = () => {
     setTab("Register");
+  };
+
+  const roleBasedRedirect = (res: AxiosResponse) => {
+    if (res.data.role === "admin") {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/user/history");
+    }
   };
 
   const googleLogin = async () => {
@@ -45,9 +57,10 @@ function Login() {
               role: res.data.role,
               _id: res.data._id,
             });
+            roleBasedRedirect(res);
           })
+
           .catch();
-        navigate("/");
       })
       .catch((error) => toast.error(error.toString().slice(24)));
   };

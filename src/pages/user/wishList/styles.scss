@@ -1,0 +1,33 @@
+.wish-list-page{
+  .container{
+    display: flex;
+    height: calc(100vh - 385px);
+  .menu-user{
+    width: 20%;
+    border-right: 2px solid  #ebebeb;
+    margin: 10px 0;
+    padding: 10px 0;
+    .active {
+      background-color: #1890ff;
+      color: #fff;
+    }
+    li {
+      height: 45px;
+      width: 100%;
+      cursor: pointer;
+      padding: 10px 0 10px 10px;
+    }
+    li:hover {
+      background-color: #1890ff;
+      color: #fff;
+      border: 2px solid #1890ff;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .menu-user{
+        width: 100px;
+      } 
+    }   
+  }
+  
+}

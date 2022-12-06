@@ -13,9 +13,13 @@ import { currentUser } from "./utils/auth";
 import { AxiosResponse } from "axios";
 import Footer from "./components/footer";
 import ScrollButton from "./components/scrollTop";
+import HistoryPage from "./pages/user/History";
+import UserRoutes from "./components/routes/UserRoutes";
+import Password from "./pages/user/password/Password";
+import WishList from "./pages/user/wishList/WishList";
 
 function App() {
-  const { unsubcribeUser } = useAuth();
+  const { unsubcribeUser, auth: user } = useAuth();
   useEffect(() => {
     const unsubcribe = auth.onAuthStateChanged(
       auth.getAuth(),
@@ -47,6 +51,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register/complete" element={<RegisterComplete />} />
         <Route path="/forgot/password" element={<ForgotPassword />} />
+        <Route element={<UserRoutes />}>
+          <Route path="/user/history" element={<HistoryPage />} />
+          <Route path="/user/password" element={<Password />} />
+          <Route path="/user/wishlist" element={<WishList />} />
+        </Route>
       </Routes>
       <ScrollButton />
       <Footer />
