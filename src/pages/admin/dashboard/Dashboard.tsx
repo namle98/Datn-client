@@ -1,16 +1,16 @@
-import UserNav from "../../../components/userNav/userNav";
+import AdminNav from "../../../components/adminNav";
 import "./styles.scss";
 
-function WishList() {
+function Dashboard() {
   return (
-    <div className="wish-list-page">
+    <div className="dashboard">
       <div className="container">
         <div className="row">
           <div className="col-md-2">
-            <UserNav />
+            <AdminNav />
           </div>
           <div className="col">
-            <div className="content">WishList</div>
+            <div className="content">asdfasdf</div>
           </div>
         </div>
       </div>
@@ -18,4 +18,4 @@ function WishList() {
   );
 }
 
-export default WishList;
+export default Dashboard;

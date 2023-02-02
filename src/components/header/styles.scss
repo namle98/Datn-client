@@ -1,27 +1,16 @@
-.header-container{
-  .container{
+.header-container {
+  .container {
     display: flex;
   }
-  .ant-menu-horizontal{
+
+  .ant-menu-horizontal {
     border-bottom: unset
   }
- 
-    .sub-menu-hover {
-     
 
-   ul {
-    min-width: 80px;
-    li {
-          display: flex;
+  .menu a:not(.btn) {
+    display: flex;
+    position: relative;
+    text-decoration: none;
     align-items: center;
-    justify-content: center
-   }
-   }
-   
-  }
-  .sub-menu-hover :hover{
-    color: #1890ff;
-   cursor: pointer;
-   
-  }
+}
 }

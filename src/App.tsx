@@ -17,6 +17,9 @@ import HistoryPage from "./pages/user/History";
 import UserRoutes from "./components/routes/UserRoutes";
 import Password from "./pages/user/password/Password";
 import WishList from "./pages/user/wishList/WishList";
+import AdminRoutes from "./components/routes/AdminRoutes";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
+import CategoryCreate from "./pages/admin/category/CategoryCreate";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -55,6 +58,10 @@ function App() {
           <Route path="/user/history" element={<HistoryPage />} />
           <Route path="/user/password" element={<Password />} />
           <Route path="/user/wishlist" element={<WishList />} />
+        </Route>
+        <Route element={<AdminRoutes />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/category" element={<CategoryCreate />} />
         </Route>
       </Routes>
       <ScrollButton />

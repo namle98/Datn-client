@@ -23,9 +23,9 @@ function Login() {
   //   if (user && user.idToken) navigate("/");
   // }, [user]);
 
-  useEffect(() => {
-    if (user && user.idToken) navigate("/user/history");
-  }, [user]);
+  // useEffect(() => {
+  //   if (user && user.idToken) navigate("/user/history");
+  // }, [user]);
 
   const onClickTabLogin = () => {
     setTab("Login");

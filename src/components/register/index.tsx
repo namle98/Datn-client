@@ -25,7 +25,9 @@ function Register({ googleLogin }: RegisterProps) {
   };
 
   const handleFormChange = () => {
-    const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
+    const hasErrors =
+      form.getFieldsError().some(({ errors }) => errors.length) ||
+      !form.getFieldsValue().email;
     setDisabledSave(hasErrors);
   };
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.scss";
 
@@ -19,10 +18,18 @@ function UserNav() {
           >
             History
           </li>
-
-          <li onClick={() => redirectToPage("/user/password")}>Password</li>
-
-          <li onClick={() => redirectToPage("/user/wishlist")}>WishList</li>
+          <li
+            onClick={() => redirectToPage("/user/password")}
+            className={`${pathname.includes("password") ? "active" : ""}`}
+          >
+            Password
+          </li>
+          <li
+            onClick={() => redirectToPage("/user/wishlist")}
+            className={`${pathname.includes("wishlist") ? "active" : ""}`}
+          >
+            WishList
+          </li>
         </ul>
       </div>
     </div>

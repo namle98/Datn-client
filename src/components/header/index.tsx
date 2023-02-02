@@ -4,6 +4,7 @@ import {
   HomeOutlined,
   UserAddOutlined,
   LogoutOutlined,
+  DashboardOutlined,
 } from "@ant-design/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
@@ -181,12 +182,30 @@ function Header() {
                     </Link>
                   </li>
                 ) : (
-                  <li className="sub-menu-hover">
+                  <li>
                     <span className="sf-with-ul">{user?.name}</span>
                     <ul>
+                      {user && user.role === "subscriber" && (
+                        <li>
+                          <Link to="/user/history">
+                            <DashboardOutlined style={{ fontSize: "14px" }} />
+                            &nbsp; Dashboard
+                          </Link>
+                        </li>
+                      )}
+                      {user && user.role === "admin" && (
+                        <li>
+                          <Link to="/admin/dashboard">
+                            <DashboardOutlined style={{ fontSize: "14px" }} />
+                            &nbsp; Dashboard
+                          </Link>
+                        </li>
+                      )}
                       <li onClick={logoutUser}>
-                        <LogoutOutlined style={{ fontSize: "14px" }} />
-                        &nbsp; Logout
+                        <Link to="/login">
+                          <LogoutOutlined style={{ fontSize: "14px" }} />
+                          &nbsp; Logout
+                        </Link>
                       </li>
                     </ul>
                   </li>

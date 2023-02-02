@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.scss";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import "antd/dist/antd.min.css";
+// import "antd/dist/antd.min.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const container = document.getElementById("root")!;
 const root = createRoot(container);

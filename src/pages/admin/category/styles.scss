@@ -1,0 +1,25 @@
+.create-category{
+  .content{
+    border-left: 1px solid #ebebeb;
+    margin: 10px 0;
+    padding: 10px 0 10px 50px;
+    min-height: calc(100vh - 400px);
+     .title-page {
+        font-weight: bolder;
+        font-size: 35px;
+        color: #1890ff;
+      }
+
+      .ant-space-item:hover{
+        cursor: pointer;
+      }
+      .icon-edit {
+        font-size: 20px;
+      }
+      
+      .icon-delete {
+        font-size: 20px;
+      }
+     
+  }
+}
