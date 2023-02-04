@@ -20,6 +20,7 @@ import WishList from "./pages/user/wishList/WishList";
 import AdminRoutes from "./components/routes/AdminRoutes";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import CategoryCreate from "./pages/admin/category/CategoryCreate";
+import SubCategoryCreate from "./pages/admin/subCategory/subCategoryCreate";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -62,6 +63,7 @@ function App() {
         <Route element={<AdminRoutes />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/category" element={<CategoryCreate />} />
+          <Route path="/admin/sub" element={<SubCategoryCreate />} />
         </Route>
       </Routes>
       <ScrollButton />

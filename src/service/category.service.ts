@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Category } from "../models/category.model";
 import http from "../utils/http";
 
