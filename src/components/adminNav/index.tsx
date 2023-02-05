@@ -19,6 +19,12 @@ function AdminNav() {
             DashBoard
           </li>
           <li
+            onClick={() => redirectToPage("/admin/product")}
+            className={`${pathname === "/admin/product" ? "active" : ""}`}
+          >
+            Product
+          </li>
+          <li
             onClick={() => redirectToPage("/admin/products")}
             className={`${pathname.includes("products") ? "active" : ""}`}
           >

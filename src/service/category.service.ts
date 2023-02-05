@@ -25,3 +25,5 @@ export const createCategories = (category: Category, token: any) =>
       authtoken: token,
     },
   });
+export const getCategorySubs = (_id: string) =>
+  http.get(`category/subs/${_id}`);

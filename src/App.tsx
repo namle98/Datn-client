@@ -21,6 +21,7 @@ import AdminRoutes from "./components/routes/AdminRoutes";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import SubCategoryCreate from "./pages/admin/subCategory/subCategoryCreate";
+import ProductCreate from "./pages/admin/product/productCreate";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -64,6 +65,7 @@ function App() {
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/category" element={<CategoryCreate />} />
           <Route path="/admin/sub" element={<SubCategoryCreate />} />
+          <Route path="/admin/product" element={<ProductCreate />} />
         </Route>
       </Routes>
       <ScrollButton />
