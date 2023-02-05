@@ -3,6 +3,7 @@ import { FormInstance, useForm } from "antd/es/form/Form";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import AdminNav from "../../../components/adminNav";
+import FilesUpload from "../../../components/filesUpload";
 import LoadingSpinner from "../../../components/Loading/LoadingSpinner";
 import useAuth from "../../../hooks/useAuth";
 import {
@@ -124,6 +125,14 @@ function ProductCreate() {
           <div className="col-md-8">
             <div className="content">
               <div className="title-page">Create Product</div>
+              <div className="p-3">
+                <FilesUpload
+                  values={values}
+                  setValues={setValues}
+                  setLoading={setLoading}
+                />
+              </div>
+
               <ProductCreateForm
                 createProducts={createProducts}
                 handleFormChange={handleFormChange}
