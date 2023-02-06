@@ -77,6 +77,11 @@ function SubCategoryCreate() {
     setDataSource(newSubCategories);
   }, [categories, subCategories]);
 
+  useEffect(() => {
+    const disabled = !subCategoryName || !categoryValue;
+    setDisabledSaveFormUpdate(disabled);
+  }, [subCategoryName, categoryValue]);
+
   const loadCategories = () =>
     getCategories().then((c) => setCategories(c.data));
 
@@ -108,18 +113,6 @@ function SubCategoryCreate() {
       !form.getFieldsValue().category;
 
     setDisabledSave(hasErrors);
-  };
-  const handleFormChangeUpdate = () => {
-    const hasErrors =
-      form.getFieldsError().some(({ errors }) => errors.length) ||
-      !form.getFieldsValue().subCategoryUpdate ||
-      !form.getFieldsValue().categoryUpdate ||
-      !categoryValue ||
-      !subCategoryName;
-    setDisabledSaveFormUpdate(hasErrors);
-
-    handleOnChangeSubCategoryName(form.getFieldsValue().subCategoryUpdate);
-    handleOnChangeCategoryValue(form.getFieldsValue().categoryUpdate);
   };
 
   const handleRemoveCategory = (item: any) => {
@@ -153,8 +146,8 @@ function SubCategoryCreate() {
     // setCategoryValue(e.categoryUpdate);
   };
 
-  const handleOnChangeSubCategoryName = (value: any) => {
-    setSubCategoryName(value);
+  const handleOnChangeSubCategoryName = (e: any) => {
+    setSubCategoryName(e.target.value);
   };
   const handleOnChangeCategoryValue = (value: any) => {
     setCategoryValue(value);
@@ -466,27 +459,35 @@ function SubCategoryCreate() {
                     name="basic"
                     onFinish={updateCategory}
                     autoComplete="off"
-                    onFieldsChange={handleFormChangeUpdate}
                     form={form}
                   >
                     <Form.Item
                       name="categoryUpdate"
-                      label="Category"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please select a option",
-                        },
-                      ]}
+                      // label="Category"
+                      // rules={[
+                      //   {
+                      //     required: true,
+                      //     message: "Please select a option",
+                      //   },
+                      // ]}
                       className="display-block-select-modal"
                     >
-                      <Select
-                        placeholder="Select a option and change input text below"
-                        allowClear
-                        options={categoriesOption}
-                        value={categoryValue}
-                        onChange={handleOnChangeCategoryValue}
-                      ></Select>
+                      <div className="form-group">
+                        <label
+                          htmlFor="singin-password-2"
+                          style={{ display: "flex" }}
+                        >
+                          <div style={{ color: "#ff4d4f" }}>* </div>
+                          Category :
+                        </label>
+                        <Select
+                          placeholder="Select a option and change input text below"
+                          allowClear
+                          options={categoriesOption}
+                          value={categoryValue}
+                          onChange={handleOnChangeCategoryValue}
+                        ></Select>
+                      </div>
                     </Form.Item>
                     <Form.Item
                       name="subCategoryUpdate"
@@ -506,7 +507,6 @@ function SubCategoryCreate() {
                           Category :
                         </label>
                         <input
-                          defaultValue={subCategoryName}
                           value={subCategoryName}
                           type="text"
                           className="form-control"
