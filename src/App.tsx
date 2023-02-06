@@ -24,6 +24,7 @@ import SubCategoryCreate from "./pages/admin/subCategory/subCategoryCreate";
 import ProductCreate from "./pages/admin/product/productCreate";
 import AllProduct from "./pages/admin/product/allProduct";
 import ProductUpdate from "./pages/admin/product/productUpdate";
+import Product from "./pages/product/Product";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -58,6 +59,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register/complete" element={<RegisterComplete />} />
         <Route path="/forgot/password" element={<ForgotPassword />} />
+        <Route path="/product/:slug" element={<Product />} />
         <Route element={<UserRoutes />}>
           <Route path="/user/history" element={<HistoryPage />} />
           <Route path="/user/password" element={<Password />} />
