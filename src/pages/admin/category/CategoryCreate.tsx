@@ -122,7 +122,7 @@ function CategoryCreate() {
     setShowModalUpdate(item?.slug);
     getCategory(item.slug).then((res) => {
       const category = res.data;
-      setCategoryName(category[0].name);
+      setCategoryName(category.category.name);
     });
   };
 

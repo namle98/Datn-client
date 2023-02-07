@@ -16,7 +16,8 @@ function RatingModal({ children }: any) {
     if (auth && auth.idToken) {
       setModalVisible(true);
     } else {
-      navigate("/login");
+      localStorage.setItem("url", `/product/${slug}`);
+      navigate("/login", { state: `/product/${slug}` });
     }
   };
 

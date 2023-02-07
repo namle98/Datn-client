@@ -158,7 +158,7 @@ function SubCategoryCreate() {
     setCategoryValue(item.parent);
     getSubCategory(item.slug).then((res) => {
       const subCategory = res.data;
-      setSubCategoryName(subCategory.name);
+      setSubCategoryName(subCategory.sub.name);
     });
   };
 

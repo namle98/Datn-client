@@ -52,7 +52,12 @@ function Login({ googleLogin }: LoginProps) {
             role: res.data.role,
             _id: res.data._id,
           });
-          roleBasedRedirect(res);
+          let url = localStorage.getItem("url");
+          if (url) {
+            navigate(url);
+          } else {
+            roleBasedRedirect(res);
+          }
         })
         .catch((err: any) => console.log(err));
     } catch (error: any) {
