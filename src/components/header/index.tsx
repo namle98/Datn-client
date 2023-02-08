@@ -5,12 +5,14 @@ import {
   UserAddOutlined,
   LogoutOutlined,
   DashboardOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import useAuth from "../../hooks/useAuth";
 import "./styles.scss";
 import imgLogo from "../../assets/logoSoict.png";
+import SearchForm from "./searchForm";
 
 function Header() {
   const { logout, auth: user } = useAuth();
@@ -24,6 +26,7 @@ function Header() {
       : setCurrent("");
     if (location.pathname.includes("login")) setCurrent("login");
     if (location.pathname === "/") setCurrent("home");
+    if (location.pathname === "/shop") setCurrent("shop");
   }, [location.pathname]);
 
   const logoutUser = () => {
@@ -59,33 +62,24 @@ function Header() {
                 </li>
               </ul>
             </nav>
+            <nav className="main-nav">
+              <ul className="menu sf-arrows">
+                <li
+                  className={`megamenu-container ${
+                    current === "shop" ? "active" : ""
+                  }`}
+                >
+                  <Link to="/shop">
+                    <Tooltip placement="bottom" color="#1890ff" title={"Shop"}>
+                      <ShoppingOutlined style={{ fontSize: "22px" }} />
+                    </Tooltip>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
           <div className="header-right">
-            <div className="header-search">
-              <a
-                href="#"
-                className="search-toggle"
-                role="button"
-                title="Search"
-              >
-                <i className="icon-search" />
-              </a>
-              <form action="#" method="get">
-                <div className="header-search-wrapper">
-                  <label htmlFor="q" className="sr-only">
-                    Search
-                  </label>
-                  <input
-                    type="search"
-                    className="form-control"
-                    name="q"
-                    id="q"
-                    placeholder="Search in..."
-                    required
-                  />
-                </div>
-              </form>
-            </div>
+            <SearchForm />
             <div className="dropdown cart-dropdown">
               <a
                 href="#"

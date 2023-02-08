@@ -15,6 +15,10 @@ interface PropsParam {
   shippingOption: any;
   brandOption: any;
   colorOption: any;
+  ramOption: any;
+  displayOption: any;
+  romOption: any;
+  chipOption: any;
 }
 
 function ProductCreateForm({
@@ -31,6 +35,10 @@ function ProductCreateForm({
   showSub,
   subOptions,
   setValues,
+  ramOption,
+  chipOption,
+  romOption,
+  displayOption,
 }: PropsParam) {
   const {
     title,
@@ -46,6 +54,10 @@ function ProductCreateForm({
     brands,
     color,
     brand,
+    ram,
+    rom,
+    display,
+    chip,
   } = values;
 
   const [disabledSave, setDisabledSave] = useState(false);
@@ -227,6 +239,42 @@ function ProductCreateForm({
             options={brandOption}
             value={brand}
             onChange={(v) => handleChange(v, "brand")}
+          ></Select>
+        </Form.Item>
+        <Form.Item name="chip" label="Chip">
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+            options={chipOption}
+            value={chip}
+            onChange={(v) => handleChange(v, "chip")}
+          ></Select>
+        </Form.Item>
+        <Form.Item name="ram" label="Ram">
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+            options={ramOption}
+            value={ram}
+            onChange={(v) => handleChange(v, "ram")}
+          ></Select>
+        </Form.Item>
+        <Form.Item name="rom" label="Rom">
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+            options={romOption}
+            value={rom}
+            onChange={(v) => handleChange(v, "rom")}
+          ></Select>
+        </Form.Item>
+        <Form.Item name="display" label="Display">
+          <Select
+            placeholder="Select a option and change input text above"
+            allowClear
+            options={displayOption}
+            value={display}
+            onChange={(v) => handleChange(v, "display")}
           ></Select>
         </Form.Item>
         <Form.Item

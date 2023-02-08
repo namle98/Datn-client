@@ -2,8 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ProductListItems({ product }: any) {
-  const { price, category, subs, shipping, color, brand, quantity, sold } =
-    product;
+  const {
+    price,
+    category,
+    subs,
+    shipping,
+    color,
+    brand,
+    quantity,
+    sold,
+    display,
+    chip,
+    ram,
+    rom,
+  } = product;
 
   return (
     <ul className="list-group">
@@ -42,6 +54,30 @@ function ProductListItems({ product }: any) {
         </li>
       )}
 
+      <li className="list-group-item">
+        <span>Chipset</span>{" "}
+        <span className="label label-default label-pill pull-xs-right">
+          {chip}
+        </span>
+      </li>
+      <li className="list-group-item">
+        <span>Ram</span>{" "}
+        <span className="label label-default label-pill pull-xs-right">
+          {ram}
+        </span>
+      </li>
+      <li className="list-group-item">
+        <span>Rom</span>{" "}
+        <span className="label label-default label-pill pull-xs-right">
+          {rom}
+        </span>
+      </li>
+      <li className="list-group-item">
+        <span>Display</span>{" "}
+        <span className="label label-default label-pill pull-xs-right">
+          {display}
+        </span>
+      </li>
       <li className="list-group-item">
         <span>Shipping</span>{" "}
         <span className="label label-default label-pill pull-xs-right">

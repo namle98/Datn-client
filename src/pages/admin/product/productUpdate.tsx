@@ -31,6 +31,36 @@ const shippingOption = [
   { value: "Yes", label: "Yes" },
   { value: "No", label: "No" },
 ];
+const displayOption = [
+  { value: "13,3 inh", label: "13,3 inh" },
+  { value: "14 inh", label: "14 inh" },
+  { value: "15.6 inh", label: "15.6 inh" },
+  { value: "16 inh", label: "16 inh" },
+];
+const chipOption = [
+  { value: "Core i3", label: "Core i3" },
+  { value: "Core i5", label: "Core i5" },
+  { value: "Core i7", label: "Core i7" },
+  { value: "Core i9", label: "Core i9" },
+  { value: "Ryzen 5", label: "Ryzen 5" },
+  { value: "Ryzen 7", label: "Ryzen 7" },
+  { value: "Ryzen 9", label: "Ryzen 9" },
+  { value: "Apple M1", label: "Apple M1" },
+  { value: "Apple M2", label: "Apple M2" },
+];
+const ramOption = [
+  { value: "8GB", label: "8GB" },
+  { value: "16GB", label: "16GB" },
+  { value: "32GB", label: "32GB" },
+  { value: "64GB", label: "64GB" },
+];
+const romOption = [
+  { value: "128Gb", label: "128Gb" },
+  { value: "256GB", label: "256GB" },
+  { value: "512Gb", label: "512Gb" },
+  { value: "1TB", label: "1TB" },
+  { value: "2TB", label: "2TB" },
+];
 
 const initialState = {
   title: "",
@@ -45,6 +75,10 @@ const initialState = {
   brands: "",
   color: "",
   brand: "",
+  display: "",
+  chip: "",
+  ram: "",
+  rom: "",
 };
 
 function ProductUpdate() {
@@ -125,6 +159,18 @@ function ProductUpdate() {
       case "color":
         setValues({ ...values, color: e });
         break;
+      case "chip":
+        setValues({ ...values, chip: e });
+        break;
+      case "display":
+        setValues({ ...values, display: e });
+        break;
+      case "ram":
+        setValues({ ...values, ram: e });
+        break;
+      case "rom":
+        setValues({ ...values, rom: e });
+        break;
       // case "category":
       //   setValues({ ...values, category: e });
       //   break;
@@ -181,6 +227,10 @@ function ProductUpdate() {
                 brandOption={brandOption}
                 colorOption={colorOption}
                 shippingOption={shippingOption}
+                chipOption={chipOption}
+                displayOption={displayOption}
+                ramOption={ramOption}
+                romOption={romOption}
                 form={form}
                 formRef={formRef}
                 values={values}

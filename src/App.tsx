@@ -27,6 +27,7 @@ import ProductUpdate from "./pages/admin/product/productUpdate";
 import Product from "./pages/product/Product";
 import CategoryHome from "./pages/category/categoryHome";
 import SubCategoryHome from "./pages/subCategory/subCategoryHome";
+import Shop from "./pages/shop/shop";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -64,6 +65,7 @@ function App() {
         <Route path="/product/:slug" element={<Product />} />
         <Route path="/category/:slug" element={<CategoryHome />} />
         <Route path="/sub/:slug" element={<SubCategoryHome />} />
+        <Route path="/shop" element={<Shop />} />
         <Route element={<UserRoutes />}>
           <Route path="/user/history" element={<HistoryPage />} />
           <Route path="/user/password" element={<Password />} />

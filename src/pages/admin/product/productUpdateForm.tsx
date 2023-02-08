@@ -17,6 +17,10 @@ interface PropsParam {
   selectedCategory: any;
   arrayOfSubs: any;
   setArrayOfSubs: (param: string) => void;
+  ramOption: any;
+  displayOption: any;
+  romOption: any;
+  chipOption: any;
 }
 
 function ProductUpdateForm({
@@ -35,6 +39,10 @@ function ProductUpdateForm({
   arrayOfSubs,
   setArrayOfSubs,
   selectedCategory,
+  ramOption,
+  chipOption,
+  romOption,
+  displayOption,
 }: PropsParam) {
   const {
     title,
@@ -49,6 +57,10 @@ function ProductUpdateForm({
     brands,
     color,
     brand,
+    ram,
+    rom,
+    display,
+    chip,
   } = values;
 
   const [disabledSave, setDisabledSave] = useState(false);
@@ -245,6 +257,62 @@ function ProductUpdateForm({
               options={brandOption}
               value={brand}
               onChange={(v) => handleChange(v, "brand")}
+            ></Select>
+          </div>
+        </Form.Item>
+        <Form.Item name="chip">
+          <div className="form-group">
+            <label htmlFor="singin-password-2" style={{ display: "flex" }}>
+              <div style={{ color: "#ff4d4f" }}>* </div>Chip :
+            </label>
+            <Select
+              placeholder="Select a option and change input text above"
+              allowClear
+              options={chipOption}
+              value={chip}
+              onChange={(v) => handleChange(v, "chip")}
+            ></Select>
+          </div>
+        </Form.Item>
+        <Form.Item name="ram">
+          <div className="form-group">
+            <label htmlFor="singin-password-2" style={{ display: "flex" }}>
+              <div style={{ color: "#ff4d4f" }}>* </div>Ram :
+            </label>
+            <Select
+              placeholder="Select a option and change input text above"
+              allowClear
+              options={ramOption}
+              value={ram}
+              onChange={(v) => handleChange(v, "ram")}
+            ></Select>
+          </div>
+        </Form.Item>
+        <Form.Item name="rom">
+          <div className="form-group">
+            <label htmlFor="singin-password-2" style={{ display: "flex" }}>
+              <div style={{ color: "#ff4d4f" }}>* </div>Rom :
+            </label>
+            <Select
+              placeholder="Select a option and change input text above"
+              allowClear
+              options={romOption}
+              value={rom}
+              onChange={(v) => handleChange(v, "rom")}
+            ></Select>
+          </div>
+        </Form.Item>
+        <Form.Item name="display">
+          <div className="form-group">
+            <label htmlFor="singin-password-2" style={{ display: "flex" }}>
+              <div style={{ color: "#ff4d4f" }}>* </div>Display :
+            </label>
+            <Select
+              placeholder="Select a option and change input text above"
+              allowClear
+              options={displayOption}
+              value={display}
+              onChange={(v) => handleChange(v, "display")}
             ></Select>
           </div>
         </Form.Item>
