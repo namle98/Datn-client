@@ -23,7 +23,7 @@ function CategoryHome() {
   }, []);
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="row">
         <div className="col">
           {loading ? (

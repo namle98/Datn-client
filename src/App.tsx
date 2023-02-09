@@ -28,6 +28,8 @@ import Product from "./pages/product/Product";
 import CategoryHome from "./pages/category/categoryHome";
 import SubCategoryHome from "./pages/subCategory/subCategoryHome";
 import Shop from "./pages/shop/shop";
+import Cart from "./pages/cart/cart";
+import SideDrawer from "./components/drawer/SideDrawer";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -56,6 +58,7 @@ function App() {
   return (
     <>
       <Header />
+      <SideDrawer />
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -66,6 +69,7 @@ function App() {
         <Route path="/category/:slug" element={<CategoryHome />} />
         <Route path="/sub/:slug" element={<SubCategoryHome />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/cart" element={<Cart />} />
         <Route element={<UserRoutes />}>
           <Route path="/user/history" element={<HistoryPage />} />
           <Route path="/user/password" element={<Password />} />

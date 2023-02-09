@@ -1,16 +1,57 @@
 .header-container {
   .container {
     display: flex;
+
+    .cart-dropdown {
+      a>span {
+        display: flex;
+      }
+
+      .active {
+        color: #1890ff;
+      }
+    }
   }
 
   .ant-menu-horizontal {
     border-bottom: unset
   }
 
+  .mobile-menu>li>a {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-right: 3px;
+    }
+  }
+
+  .mobile-menu>li>a:hover {
+    span {
+      color: #1890ff !important;
+    }
+  }
+
+  .mobile-menu {
+    .show-user-name {
+      a {
+        cursor: unset !important;
+      }
+    }
+  }
+
+  .mobile-menu {
+    .active>a>span {
+      color: #1890ff !important;
+    }
+  }
+
+
   .menu a:not(.btn) {
     display: flex;
     position: relative;
     text-decoration: none;
     align-items: center;
-}
+  }
 }
