@@ -30,6 +30,7 @@ import SubCategoryHome from "./pages/subCategory/subCategoryHome";
 import Shop from "./pages/shop/shop";
 import Cart from "./pages/cart/cart";
 import SideDrawer from "./components/drawer/SideDrawer";
+import Checkout from "./pages/checkout/checkout";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -74,6 +75,7 @@ function App() {
           <Route path="/user/history" element={<HistoryPage />} />
           <Route path="/user/password" element={<Password />} />
           <Route path="/user/wishlist" element={<WishList />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Route>
         <Route element={<AdminRoutes />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />

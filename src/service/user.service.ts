@@ -25,10 +25,14 @@ export const emptyUserCart = (authtoken: any) =>
     },
   });
 
-export const saveUserAddress = (authtoken: any, address: string) =>
+export const saveUserAddress = (
+  authtoken: any,
+  address: string,
+  phone: string
+) =>
   http.post(
     `user/address`,
-    { address },
+    { address, phone },
     {
       headers: {
         authtoken,

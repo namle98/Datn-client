@@ -1,4 +1,10 @@
 .cart-page{
+  .table-summary{
+    td{
+      text-align: unset;
+    }
+  }
+
   .btn-outline-primary-2:hover{
     a{
       color: white;
