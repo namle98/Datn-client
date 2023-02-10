@@ -101,8 +101,10 @@ function MenuWeb({
               </li>
             ) : (
               <li>
-                <span className="sf-with-ul">{user?.name}</span>
-                <ul>
+                <span className="sf-with-ul upper-user-name-header-web">
+                  {user?.name}
+                </span>
+                <ul className="left-sub-menu-web">
                   {user && user.role === "subscriber" && (
                     <li>
                       <Link to="/user/history">

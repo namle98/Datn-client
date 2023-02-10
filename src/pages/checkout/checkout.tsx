@@ -56,7 +56,8 @@ function Checkout() {
     });
   };
 
-  const saveAddressToDb = () => {
+  const saveAddressToDb = (e: any) => {
+    e.preventDefault();
     // console.log(address);
     saveUserAddress(auth?.idToken, address, phone).then((res) => {
       if (res.data.ok) {
@@ -66,7 +67,8 @@ function Checkout() {
     });
   };
 
-  const applyDiscountCoupon = () => {
+  const applyDiscountCoupon = (e: any) => {
+    e.preventDefault();
     //console.log("send coupon to backend", coupon);
     applyCoupon(auth?.idToken, coupon).then((res) => {
       console.log("RES ON COUPON APPLIED", res.data);
@@ -148,7 +150,7 @@ function Checkout() {
           }}
           value={coupon}
         />
-        {discountError && <p className="bg-danger p-2">{discountError}</p>}
+        {discountError && <p style={{ color: "red" }}>{discountError}</p>}
 
         <button
           disabled={!coupon}
@@ -228,7 +230,6 @@ function Checkout() {
                         <tr className="summary-total">
                           <td>Discount Applied: Total Payable:</td>
                           <td>${totalAfterDiscount}</td>
-                          Discount Applied: Total Payable: ${totalAfterDiscount}
                         </tr>
                       )}
                     </tbody>

@@ -31,6 +31,9 @@ import Shop from "./pages/shop/shop";
 import Cart from "./pages/cart/cart";
 import SideDrawer from "./components/drawer/SideDrawer";
 import Checkout from "./pages/checkout/checkout";
+import CouponCreate from "./pages/admin/coupon/couponCreate";
+import AdminPassword from "./pages/admin/changePassword/adminPassword";
+import Payment from "./pages/payment/payment";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -76,6 +79,7 @@ function App() {
           <Route path="/user/password" element={<Password />} />
           <Route path="/user/wishlist" element={<WishList />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
         </Route>
         <Route element={<AdminRoutes />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
@@ -84,6 +88,8 @@ function App() {
           <Route path="/admin/product" element={<ProductCreate />} />
           <Route path="/admin/products" element={<AllProduct />} />
           <Route path="/admin/product/:slug" element={<ProductUpdate />} />
+          <Route path="/admin/coupon" element={<CouponCreate />} />
+          <Route path="/admin/password" element={<AdminPassword />} />
         </Route>
       </Routes>
       <ScrollButton />

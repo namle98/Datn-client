@@ -1,8 +1,54 @@
-.product-detail{
-  .list-group{
-    .list-group-item{
+.product-detail {
+  .list-group {
+    .list-group-item {
       display: flex;
       justify-content: space-between;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .img-show {
+      position: relative;
+
+      .div-img-show {
+        width: 350px;
+        height: 470px;
+        display: flex;
+        justify-content: end;
+      }
+
+      .fix-img-show {
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+      }
+
+      .img-option {
+        position: absolute;
+        width: 350px;
+        height: 120px;
+        object-fit: cover;
+        bottom: 0 !important;
+        left: 3px;
+        top: unset !important;
+        display: flex;
+        align-items: flex-end;
+
+        .border-img-option {
+          display: flex;
+          justify-content: center;
+          margin-right: 3px;
+          margin-left: 3px;
+
+          .card-image {
+            cursor: pointer;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+
+          }
+        }
+      }
     }
   }
 }

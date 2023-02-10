@@ -49,7 +49,7 @@ function AdminNav() {
             Coupon
           </li>
           <li
-            onClick={() => redirectToPage("/user/password")}
+            onClick={() => redirectToPage("/admin/password")}
             className={`${pathname.includes("password") ? "active" : ""}`}
           >
             Password

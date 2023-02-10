@@ -13,6 +13,10 @@
     }
   }
 
+  .upper-user-name-header-web{
+    text-transform: uppercase;
+  }
+
   .ant-menu-horizontal {
     border-bottom: unset
   }
@@ -54,4 +58,16 @@
     text-decoration: none;
     align-items: center;
   }
+
+  @media only screen and (max-width: 1265px) {
+    .left-sub-menu-web{
+     left: -100px;
+    }
+  }
+  @media only screen and (max-width: 1420px) {
+    .left-sub-menu-web{
+     left: -70px;
+    }
+  }
+
 }

@@ -112,7 +112,7 @@ function SingleProduct({ product, onStarClick, star }: PropsParam) {
 
   return (
     <>
-      <div className="col-md-7">
+      <div className="col-lg-7">
         {images && images.length ? (
           <ImageSlider images={images} />
         ) : (
@@ -132,7 +132,7 @@ function SingleProduct({ product, onStarClick, star }: PropsParam) {
         </Tabs>
       </div>
 
-      <div className="col-md-5">
+      <div className="col-lg-5">
         <h1 className="bg-info p-3">{title}</h1>
 
         {product && product.ratings && product.ratings.length > 0 ? (
