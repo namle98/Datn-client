@@ -13,7 +13,6 @@ import { currentUser } from "./utils/auth";
 import { AxiosResponse } from "axios";
 import Footer from "./components/footer";
 import ScrollButton from "./components/scrollTop";
-import HistoryPage from "./pages/user/History";
 import UserRoutes from "./components/routes/UserRoutes";
 import Password from "./pages/user/password/Password";
 import WishList from "./pages/user/wishList/WishList";
@@ -34,6 +33,7 @@ import Checkout from "./pages/checkout/checkout";
 import CouponCreate from "./pages/admin/coupon/couponCreate";
 import AdminPassword from "./pages/admin/changePassword/adminPassword";
 import Payment from "./pages/payment/payment";
+import HistoryPage from "./pages/user/history/History";
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
