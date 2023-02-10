@@ -1,7 +1,7 @@
 function ShowPaymentInfo({ order, showStatus = true }: any) {
   return (
     <div>
-      <p>
+      <p className="text-center">
         <span>Order Id: {order.paymentIntent.id}</span>
         {" / "}
         <span>

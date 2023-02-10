@@ -1,13 +1,18 @@
-.history-page{
- .content{
+.history-page {
+  .content {
     border-left: 1px solid #ebebeb;
     margin: 10px 0;
-    padding: 10px 0;
+    padding: 10px 0 10px 50px;
+
     .title-page {
-        font-weight: bolder;
-        font-size: 35px;
-        color: #1890ff;
-      }
+      font-weight: bolder;
+      font-size: 35px;
+      color: #1890ff;
+    }
+
+    .card {
+      border: 0.1rem solid #ebebeb;
+    }
   }
-  
+
 }
