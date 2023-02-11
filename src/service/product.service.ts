@@ -7,8 +7,8 @@ export const createProduct = (product: any, token: any) =>
     },
   });
 
-export const getProductsByCount = (count: number) =>
-  http.get(`products/${count}`);
+export const getProductsByCount = (page: number) =>
+  http.get(`products/${page}`);
 
 export const removeProduct = (slug: string, authToken: string) =>
   http.delete(`/product/${slug}`, {

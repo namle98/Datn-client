@@ -3,7 +3,7 @@ import {
   DownSquareOutlined,
   StarOutlined,
 } from "@ant-design/icons";
-import { Checkbox, Menu, Radio, Slider } from "antd";
+import { Checkbox, Menu, Pagination, Radio, Slider } from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import { getCategories } from "../../service/category.service";
 import {
   fetchProductsByFilter,
   getProductsByCount,
+  getProductsCount,
 } from "../../service/product.service";
 import { getSubCategories } from "../../service/subCategory.service";
 import Star from "./star";
@@ -28,6 +29,8 @@ function Shop() {
   const [star, setStar] = useState("");
   const [subs, setSubs] = useState<any>([]);
   const [sub, setSub] = useState<any>("");
+  const [page, setPage] = useState(1);
+  const [productsCount, setProductsCount] = useState(0);
   const [brands, setBrands] = useState([
     "Apple",
     "Samsung",
@@ -79,6 +82,10 @@ function Shop() {
     getCategories().then((res) => setCategories(res.data));
     // fetch subcategories
     getSubCategories().then((res) => setSubs(res.data));
+  }, [page]);
+
+  useEffect(() => {
+    getProductsCount().then((res) => setProductsCount(res.data));
   }, []);
 
   const fetchProducts = (arg: any) => {
@@ -89,7 +96,8 @@ function Shop() {
 
   // 1. load products by default on page load
   const loadAllProducts = () => {
-    getProductsByCount(12).then((p) => {
+    setLoading(true);
+    getProductsByCount(page).then((p) => {
       setProducts(p.data);
       setLoading(false);
     });
@@ -521,6 +529,7 @@ function Shop() {
   return (
     <div className="container shop-page">
       <div className="row">
+        {loading && <LoadingSpinner />}
         <div className="col-md-3 pt-2">
           <div className="title-search-filter">
             <h4>Search/Filter</h4> <h6 onClick={clearFilter}>Clear Filter</h6>
@@ -668,11 +677,7 @@ function Shop() {
         </div>
 
         <div className="col-md-9 pt-2">
-          {loading ? (
-            <LoadingSpinner />
-          ) : (
-            <h4 style={{ color: "#1890ff" }}>Products</h4>
-          )}
+          <h4 style={{ color: "#1890ff" }}>Products</h4>
 
           {products.length < 1 && <p>No products found</p>}
 
@@ -682,6 +687,15 @@ function Shop() {
                 <ProductCard product={p} />
               </div>
             ))}
+
+            <nav className="col-md-4 offset-md-4 text-center pt-5 p-3">
+              <Pagination
+                current={page}
+                total={productsCount}
+                onChange={(value) => setPage(value)}
+                pageSize={12}
+              />
+            </nav>
           </div>
         </div>
       </div>
