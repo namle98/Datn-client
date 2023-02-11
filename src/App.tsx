@@ -8,6 +8,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import { currentUser } from "./utils/auth";
 import { AxiosResponse } from "axios";
 import LoadingSpinner from "./components/Loading/LoadingSpinner";
+// import Order from "./pages/admin/orders/Order";
 // import Header from "./components/header/index";
 // import Login from "./pages/auth/Login";
 // import Home from "./pages/Home";
@@ -73,6 +74,7 @@ const AdminPassword = lazy(
 );
 const Payment = lazy(() => import("./pages/payment/payment"));
 const HistoryPage = lazy(() => import("./pages/user/history/History"));
+const Order = lazy(() => import("./pages/admin/orders/Order"));
 
 function App() {
   const { unsubcribeUser, auth: user } = useAuth();
@@ -128,6 +130,7 @@ function App() {
           <Route path="/admin/products" element={<AllProduct />} />
           <Route path="/admin/product/:slug" element={<ProductUpdate />} />
           <Route path="/admin/coupon" element={<CouponCreate />} />
+          <Route path="/admin/order" element={<Order />} />
           <Route path="/admin/password" element={<AdminPassword />} />
         </Route>
       </Routes>

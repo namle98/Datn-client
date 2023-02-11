@@ -1,31 +1,39 @@
+import { Table } from "antd";
+import { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import AdminNav from "../../../components/adminNav";
-import Orders from "../../../components/order/order";
-import useAuth from "../../../hooks/useAuth";
-import { changeStatus, getOrders } from "../../../service/admin.service";
+import { getAllProducts } from "../../../service/product.service";
+import PieChart from "./pieChart";
 import "./styles.scss";
 
+interface DataType {
+  title: string;
+  slug: string;
+}
+
 function Dashboard() {
-  const { auth } = useAuth();
-  const [orders, setOrders] = useState([]);
+  const [allProduct, setAllProduct] = useState<any>([]);
 
   useEffect(() => {
-    loadOrders();
+    getAllProducts().then((res) => setAllProduct(res.data));
   }, []);
 
-  const loadOrders = () =>
-    getOrders(auth?.idToken).then((res) => {
-      console.log(JSON.stringify(res.data, null, 4));
-      setOrders(res.data);
-    });
+  const productOutOfStock = allProduct?.filter((p: any) => p.quantity === 0);
 
-  const handleStatusChange = (orderId: string, orderStatus: any) => {
-    changeStatus(orderId, orderStatus, auth?.idToken).then((res) => {
-      toast.success("Status updated");
-      loadOrders();
-    });
-  };
+  const columns: ColumnsType<DataType> = [
+    {
+      title: "Product Name",
+      dataIndex: "title",
+      key: "title",
+      render: (_, record) => (
+        <td>
+          <Link to={`/product/${record.slug}`}>{record.title}</Link>
+        </td>
+      ),
+    },
+  ];
+
   return (
     <div className="dashboard">
       <div className="container">
@@ -33,9 +41,14 @@ function Dashboard() {
           <div className="col-md-2">
             <AdminNav />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-10">
             <div className="content">
-              <Orders orders={orders} handleStatusChange={handleStatusChange} />
+              <div style={{ marginBottom: "20px" }}>
+                <div className="title-page">List of products out of stock</div>
+                <Table dataSource={productOutOfStock} columns={columns} />
+              </div>
+              <div className="title-page">Dashboard</div>
+              <PieChart />
             </div>
           </div>
         </div>

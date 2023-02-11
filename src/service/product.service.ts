@@ -36,6 +36,7 @@ export const getProducts = async (sort: any, order: any, page: any) =>
     order,
     page,
   });
+export const getAllProducts = async () => http.get(`products`);
 
 export const getProductsCount = async () => http.get(`products/total`);
 

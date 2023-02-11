@@ -1,6 +1,8 @@
 import imgLogo from "../../assets/logoSoict.png";
+import useAuth from "../../hooks/useAuth";
 
 function Footer() {
+  const { auth } = useAuth();
   return (
     <footer className="footer">
       <div className="footer-middle">
@@ -15,13 +17,9 @@ function Footer() {
                   width={105}
                   height={25}
                 />
-                <p>
-                  Praesent dapibus, neque id cursus ucibus, tortor neque egestas
-                  augue, eu vulputate magna eros eu erat.{" "}
-                </p>
                 <div className="social-icons">
                   <a
-                    href="#"
+                    href="https://www.facebook.com/le.phuongnam.2807/"
                     className="social-icon"
                     target="_blank"
                     title="Facebook"
@@ -29,15 +27,7 @@ function Footer() {
                     <i className="icon-facebook-f" />
                   </a>
                   <a
-                    href="#"
-                    className="social-icon"
-                    target="_blank"
-                    title="Twitter"
-                  >
-                    <i className="icon-twitter" />
-                  </a>
-                  <a
-                    href="#"
+                    href="https://www.instagram.com/_lenam98_/"
                     className="social-icon"
                     target="_blank"
                     title="Instagram"
@@ -45,20 +35,12 @@ function Footer() {
                     <i className="icon-instagram" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.youtube.com/"
                     className="social-icon"
                     target="_blank"
                     title="Youtube"
                   >
                     <i className="icon-youtube" />
-                  </a>
-                  <a
-                    href="#"
-                    className="social-icon"
-                    target="_blank"
-                    title="Pinterest"
-                  >
-                    <i className="icon-pinterest" />
                   </a>
                 </div>
                 {/* End .soial-icons */}
@@ -66,31 +48,6 @@ function Footer() {
               {/* End .widget about-widget */}
             </div>
             {/* End .col-sm-6 col-lg-3 */}
-            <div className="col-sm-6 col-lg-3">
-              <div className="widget">
-                <h4 className="widget-title">Useful Links</h4>
-                {/* End .widget-title */}
-                <ul className="widget-list">
-                  <li>
-                    <a href="about.html">About Molla</a>
-                  </li>
-                  <li>
-                    <a href="#">How to shop on Molla</a>
-                  </li>
-                  <li>
-                    <a href="#">FAQ</a>
-                  </li>
-                  <li>
-                    <a href="contact.html">Contact us</a>
-                  </li>
-                  <li>
-                    <a href="login.html">Log in</a>
-                  </li>
-                </ul>
-                {/* End .widget-list */}
-              </div>
-              {/* End .widget */}
-            </div>
             {/* End .col-sm-6 col-lg-3 */}
             <div className="col-sm-6 col-lg-3">
               <div className="widget">
@@ -98,22 +55,22 @@ function Footer() {
                 {/* End .widget-title */}
                 <ul className="widget-list">
                   <li>
-                    <a href="#">Payment Methods</a>
+                    <a>Payment Methods</a>
                   </li>
                   <li>
-                    <a href="#">Money-back guarantee!</a>
+                    <a>Money-back guarantee!</a>
                   </li>
                   <li>
-                    <a href="#">Returns</a>
+                    <a>Returns</a>
                   </li>
                   <li>
-                    <a href="#">Shipping</a>
+                    <a>Shipping</a>
                   </li>
                   <li>
-                    <a href="#">Terms and conditions</a>
+                    <a>Terms and conditions</a>
                   </li>
                   <li>
-                    <a href="#">Privacy Policy</a>
+                    <a>Privacy Policy</a>
                   </li>
                 </ul>
                 {/* End .widget-list */}
@@ -127,19 +84,16 @@ function Footer() {
                 {/* End .widget-title */}
                 <ul className="widget-list">
                   <li>
-                    <a href="#">Sign In</a>
+                    <a href={auth ? "" : "/login"}>Sign In</a>
                   </li>
                   <li>
-                    <a href="cart.html">View Cart</a>
+                    <a href="/cart">View Cart</a>
                   </li>
                   <li>
-                    <a href="#">My Wishlist</a>
+                    <a href="/user/wishlist">My Wishlist</a>
                   </li>
                   <li>
-                    <a href="#">Track My Order</a>
-                  </li>
-                  <li>
-                    <a href="#">Help</a>
+                    <a href="/user/history">Track My Order</a>
                   </li>
                 </ul>
                 {/* End .widget-list */}

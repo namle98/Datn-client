@@ -105,20 +105,21 @@ function Shop() {
 
   // 2. load products on user search input
   useEffect(() => {
-    const delayed = setTimeout(() => {
-      fetchProducts({ query: text });
-      if (!text) {
-        loadAllProducts();
-      }
-    }, 300);
-    return () => clearTimeout(delayed);
+    if (text) {
+      const delayed = setTimeout(() => {
+        fetchProducts({ query: text });
+      }, 300);
+      return () => clearTimeout(delayed);
+    } else {
+      loadAllProducts();
+    }
   }, [text]);
 
   // 3. load products based on price range
-  useEffect(() => {
-    console.log("ok to request");
-    fetchProducts({ price });
-  }, [ok]);
+  // useEffect(() => {
+  //   console.log("ok to request");
+  //   fetchProducts({ price });
+  // }, [ok]);
 
   const handleSlider = (value: any) => {
     dispatch({
@@ -139,7 +140,7 @@ function Shop() {
     setDisplay("");
     setShipping("");
     setTimeout(() => {
-      setOk(!ok);
+      fetchProducts({ price: value });
     }, 300);
   };
 
@@ -527,175 +528,177 @@ function Shop() {
   };
 
   return (
-    <div className="container shop-page">
-      <div className="row">
-        {loading && <LoadingSpinner />}
-        <div className="col-md-3 pt-2">
-          <div className="title-search-filter">
-            <h4>Search/Filter</h4> <h6 onClick={clearFilter}>Clear Filter</h6>
+    <div>
+      {loading && <LoadingSpinner />}
+      <div className="container shop-page">
+        <div className="row">
+          <div className="col-md-3 pt-2">
+            <div className="title-search-filter">
+              <h4>Search/Filter</h4> <h6 onClick={clearFilter}>Clear Filter</h6>
+            </div>
+
+            <hr />
+            <Menu defaultOpenKeys={["1", "2", "4", "5"]} mode="inline">
+              {/* price */}
+              <SubMenu
+                key="1"
+                title={
+                  <span className="h6">
+                    <DollarOutlined /> Price
+                  </span>
+                }
+              >
+                <div>
+                  <Slider
+                    className="ml-4 mr-4"
+                    tipFormatter={(v) => `$${v}`}
+                    range
+                    value={price}
+                    onChange={handleSlider}
+                    max={4999}
+                  />
+                </div>
+              </SubMenu>
+
+              {/* category */}
+              <SubMenu
+                key="2"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Categories
+                  </span>
+                }
+              >
+                <div>{showCategories()}</div>
+              </SubMenu>
+
+              {/* stars */}
+              <SubMenu
+                key="3"
+                title={
+                  <span className="h6">
+                    <StarOutlined /> Rating
+                  </span>
+                }
+              >
+                <div>{showStars()}</div>
+              </SubMenu>
+
+              {/* sub category */}
+              <SubMenu
+                key="4"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Sub Categories
+                  </span>
+                }
+              >
+                <div className="pl-4 pr-4">{showSubs()}</div>
+              </SubMenu>
+
+              {/* brands */}
+              <SubMenu
+                key="5"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Brands
+                  </span>
+                }
+              >
+                <div className="pr-5">{showBrands()}</div>
+              </SubMenu>
+              {/* Chip */}
+              <SubMenu
+                key="6"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Chipset
+                  </span>
+                }
+              >
+                <div className="pr-5">{showChips()}</div>
+              </SubMenu>
+              {/* display */}
+              <SubMenu
+                key="7"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Display
+                  </span>
+                }
+              >
+                <div className="pr-5">{showDisplays()}</div>
+              </SubMenu>
+              {/* ram */}
+              <SubMenu
+                key="8"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Ram
+                  </span>
+                }
+              >
+                <div className="pr-5">{showRams()}</div>
+              </SubMenu>
+              {/* rom */}
+              <SubMenu
+                key="9"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Rom
+                  </span>
+                }
+              >
+                <div className="pr-5">{showRoms()}</div>
+              </SubMenu>
+
+              {/* colors */}
+              <SubMenu
+                key="10"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Colors
+                  </span>
+                }
+              >
+                <div className="pr-5">{showColors()}</div>
+              </SubMenu>
+
+              {/* shipping */}
+              <SubMenu
+                key="11"
+                title={
+                  <span className="h6">
+                    <DownSquareOutlined /> Shipping
+                  </span>
+                }
+              >
+                <div className="pr-5">{showShipping()}</div>
+              </SubMenu>
+            </Menu>
           </div>
 
-          <hr />
-          <Menu defaultOpenKeys={["1", "2", "4", "5"]} mode="inline">
-            {/* price */}
-            <SubMenu
-              key="1"
-              title={
-                <span className="h6">
-                  <DollarOutlined /> Price
-                </span>
-              }
-            >
-              <div>
-                <Slider
-                  className="ml-4 mr-4"
-                  tipFormatter={(v) => `$${v}`}
-                  range
-                  value={price}
-                  onChange={handleSlider}
-                  max={4999}
+          <div className="col-md-9 pt-2">
+            <h4 style={{ color: "#1890ff" }}>Products</h4>
+
+            {products.length < 1 && <p>No products found</p>}
+
+            <div className="row pb-5">
+              {products.map((p: any) => (
+                <div key={p._id} className="col-md-4 mt-3">
+                  <ProductCard product={p} />
+                </div>
+              ))}
+
+              <nav className="col-md-10 offset-md-2 text-center pt-5 p-3">
+                <Pagination
+                  current={page}
+                  total={productsCount}
+                  onChange={(value) => setPage(value)}
+                  pageSize={12}
                 />
-              </div>
-            </SubMenu>
-
-            {/* category */}
-            <SubMenu
-              key="2"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Categories
-                </span>
-              }
-            >
-              <div>{showCategories()}</div>
-            </SubMenu>
-
-            {/* stars */}
-            <SubMenu
-              key="3"
-              title={
-                <span className="h6">
-                  <StarOutlined /> Rating
-                </span>
-              }
-            >
-              <div>{showStars()}</div>
-            </SubMenu>
-
-            {/* sub category */}
-            <SubMenu
-              key="4"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Sub Categories
-                </span>
-              }
-            >
-              <div className="pl-4 pr-4">{showSubs()}</div>
-            </SubMenu>
-
-            {/* brands */}
-            <SubMenu
-              key="5"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Brands
-                </span>
-              }
-            >
-              <div className="pr-5">{showBrands()}</div>
-            </SubMenu>
-            {/* Chip */}
-            <SubMenu
-              key="6"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Chipset
-                </span>
-              }
-            >
-              <div className="pr-5">{showChips()}</div>
-            </SubMenu>
-            {/* display */}
-            <SubMenu
-              key="7"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Display
-                </span>
-              }
-            >
-              <div className="pr-5">{showDisplays()}</div>
-            </SubMenu>
-            {/* ram */}
-            <SubMenu
-              key="8"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Ram
-                </span>
-              }
-            >
-              <div className="pr-5">{showRams()}</div>
-            </SubMenu>
-            {/* rom */}
-            <SubMenu
-              key="9"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Rom
-                </span>
-              }
-            >
-              <div className="pr-5">{showRoms()}</div>
-            </SubMenu>
-
-            {/* colors */}
-            <SubMenu
-              key="10"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Colors
-                </span>
-              }
-            >
-              <div className="pr-5">{showColors()}</div>
-            </SubMenu>
-
-            {/* shipping */}
-            <SubMenu
-              key="11"
-              title={
-                <span className="h6">
-                  <DownSquareOutlined /> Shipping
-                </span>
-              }
-            >
-              <div className="pr-5">{showShipping()}</div>
-            </SubMenu>
-          </Menu>
-        </div>
-
-        <div className="col-md-9 pt-2">
-          <h4 style={{ color: "#1890ff" }}>Products</h4>
-
-          {products.length < 1 && <p>No products found</p>}
-
-          <div className="row pb-5">
-            {products.map((p: any) => (
-              <div key={p._id} className="col-md-4 mt-3">
-                <ProductCard product={p} />
-              </div>
-            ))}
-
-            <nav className="col-md-4 offset-md-4 text-center pt-5 p-3">
-              <Pagination
-                current={page}
-                total={productsCount}
-                onChange={(value) => setPage(value)}
-                pageSize={12}
-              />
-            </nav>
+              </nav>
+            </div>
           </div>
         </div>
       </div>

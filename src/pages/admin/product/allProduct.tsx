@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Modal, Pagination } from "antd";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import AdminNav from "../../../components/adminNav";
@@ -7,22 +7,30 @@ import LoadingSpinner from "../../../components/Loading/LoadingSpinner";
 import useAuth from "../../../hooks/useAuth";
 import {
   getProductsByCount,
+  getProductsCount,
   removeProduct,
 } from "../../../service/product.service";
+import "./styles.scss";
 
 function AllProduct() {
   const { auth } = useAuth();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<any>([]);
   const [showConfirmDelete, setShowConfirmDelete] = useState("");
+  const [page, setPage] = useState(1);
+  const [productsCount, setProductsCount] = useState(0);
 
   useEffect(() => {
     loadAllProducts();
   }, []);
 
+  useEffect(() => {
+    getProductsCount().then((res) => setProductsCount(res.data));
+  }, []);
+
   const loadAllProducts = () => {
     setLoading(true);
-    getProductsByCount(100)
+    getProductsByCount(page)
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -66,7 +74,7 @@ function AllProduct() {
           <div className="col-md-2">
             <AdminNav />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-10">
             <div className="content">
               <div className="title-page">All Product</div>
               <div className="row">
@@ -78,6 +86,14 @@ function AllProduct() {
                     />
                   </div>
                 ))}
+                <nav className="col-md-10 offset-md-2 text-center pt-5 p-3">
+                  <Pagination
+                    current={page}
+                    total={productsCount}
+                    onChange={(value) => setPage(value)}
+                    pageSize={12}
+                  />
+                </nav>
                 <Modal
                   title="Please Confirm"
                   open={showConfirmDelete ? true : false}

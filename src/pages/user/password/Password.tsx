@@ -44,7 +44,7 @@ function Password() {
           <div className="col-md-2">
             <UserNav />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-10">
             <div className="content">
               <div className="title-page">Change Password</div>
               <div

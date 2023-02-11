@@ -49,6 +49,12 @@ function AdminNav() {
             Coupon
           </li>
           <li
+            onClick={() => redirectToPage("/admin/order")}
+            className={`${pathname.includes("/admin/order") ? "active" : ""}`}
+          >
+            Order
+          </li>
+          <li
             onClick={() => redirectToPage("/admin/password")}
             className={`${pathname.includes("password") ? "active" : ""}`}
           >

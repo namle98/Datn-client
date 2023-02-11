@@ -257,7 +257,7 @@ function CouponCreate() {
           <div className="col-md-2">
             <AdminNav />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-10">
             <div className="content">
               <div className="title-page">Create Coupon</div>
               <div

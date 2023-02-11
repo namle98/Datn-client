@@ -1,8 +1,21 @@
-.dashboard{
-  .content{
+.dashboard {
+  .content {
     border-left: 1px solid #ebebeb;
     margin: 10px 0;
     padding: 10px 0 10px 50px;
+
+    .container-pie-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+
+      canvas {
+        width: 500px !important;
+        height: 500px !important;
+      }
+    }
+
     .title-page {
       font-weight: bolder;
       font-size: 35px;
