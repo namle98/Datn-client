@@ -28,7 +28,7 @@ function Dashboard() {
       key: "title",
       render: (_, record) => (
         <td>
-          <Link to={`/product/${record.slug}`}>{record.title}</Link>
+          <Link to={`/admin/product/${record.slug}`}>{record.title}</Link>
         </td>
       ),
     },

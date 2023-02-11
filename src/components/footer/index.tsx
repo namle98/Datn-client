@@ -8,7 +8,7 @@ function Footer() {
       <div className="footer-middle">
         <div className="container">
           <div className="row">
-            <div className="col-sm-6 col-lg-3">
+            <div className="col-sm-8 col-lg-4">
               <div className="widget widget-about">
                 <img
                   src={imgLogo}
@@ -49,7 +49,7 @@ function Footer() {
             </div>
             {/* End .col-sm-6 col-lg-3 */}
             {/* End .col-sm-6 col-lg-3 */}
-            <div className="col-sm-6 col-lg-3">
+            <div className="col-sm-8 col-lg-4">
               <div className="widget">
                 <h4 className="widget-title">Customer Service</h4>
                 {/* End .widget-title */}
@@ -78,7 +78,7 @@ function Footer() {
               {/* End .widget */}
             </div>
             {/* End .col-sm-6 col-lg-3 */}
-            <div className="col-sm-6 col-lg-3">
+            <div className="col-sm-8 col-lg-4">
               <div className="widget">
                 <h4 className="widget-title">My Account</h4>
                 {/* End .widget-title */}
