@@ -9,7 +9,10 @@ import * as authen from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCrgFgAUdDm3oc7rOaHrGSQnyDegoHIsUg",
-  authDomain: "datn-29af1.firebaseapp.com",
+  authDomain:
+    "datn-29af1.firebaseapp.com" ||
+    "https://datn-namlp.herokuapp.com/" ||
+    "https://datn-namlp-client.herokuapp.com/",
   projectId: "datn-29af1",
   storageBucket: "datn-29af1.appspot.com",
   messagingSenderId: "978320784698",
