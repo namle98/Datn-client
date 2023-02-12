@@ -17,7 +17,7 @@ function CategoryList() {
   }, []);
 
   const showCategories = () =>
-    categories.map((c: any) => (
+    categories?.map((c: any) => (
       <Link to={`/category/${c.slug}`} className="col btn btn-lg m-3">
         <div key={c._id}>{c.name}</div>
       </Link>
