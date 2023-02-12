@@ -4,10 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect, lazy, Suspense } from "react";
 import useAuth from "./hooks/useAuth";
 import { auth } from "./firebase";
-import ForgotPassword from "./pages/auth/ForgotPassword";
+// import ForgotPassword from "./pages/auth/ForgotPassword";
 import { currentUser } from "./utils/auth";
 import { AxiosResponse } from "axios";
-import LoadingSpinner from "./components/Loading/LoadingSpinner";
+// import LoadingSpinner from "./components/Loading/LoadingSpinner";
 // import Order from "./pages/admin/orders/Order";
 // import Header from "./components/header/index";
 // import Login from "./pages/auth/Login";
@@ -37,6 +37,10 @@ import LoadingSpinner from "./components/Loading/LoadingSpinner";
 // import Payment from "./pages/payment/payment";
 // import HistoryPage from "./pages/user/history/History";
 
+const LoadingSpinner = lazy(
+  () => import("./components/Loading/LoadingSpinner")
+);
+const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Header = lazy(() => import("./components/header/index"));
 const Home = lazy(() => import("./pages/Home"));
