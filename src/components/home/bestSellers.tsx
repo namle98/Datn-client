@@ -34,7 +34,7 @@ function BestSellers() {
           <LoadingCard count={3} />
         ) : (
           <div className="row">
-            {products.map((product: any) => (
+            {products?.map((product: any) => (
               <div key={product._id} className="col-md-4">
                 <ProductCard product={product} />
               </div>
