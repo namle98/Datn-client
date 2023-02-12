@@ -4,6 +4,7 @@ import NewArrivals from "../components/home/newArrivals";
 import BestSellers from "../components/home/bestSellers";
 import CategoryList from "../components/category/categoryList";
 import SubCategoryList from "../components/subCategory/subCategoryList";
+import Banner from "../components/banner/banner";
 
 function Home() {
   return (
@@ -24,6 +25,7 @@ function Home() {
           Best Sellers
         </h4>
         <BestSellers />
+        <Banner />
 
         <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
           Categories

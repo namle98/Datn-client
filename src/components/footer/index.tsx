@@ -17,6 +17,11 @@ function Footer() {
                   width={105}
                   height={25}
                 />
+                <div className="widget-call">
+                  <i className="icon-phone"></i>
+                  Call us 24/7
+                  <a href="tel:#">+84 972 814 107</a>
+                </div>
                 <div className="social-icons">
                   <a
                     href="https://www.facebook.com/le.phuongnam.2807/"
