@@ -29,33 +29,33 @@ const Invoice = ({ order }) => (
 
       <Table data={order.products}>
         <TableBody>
-          <DataTableCell getContent={(x) => x.product.title} />
-          <DataTableCell getContent={(x) => `$${x.product.price}`} />
-          <DataTableCell getContent={(x) => x.count} />
-          <DataTableCell getContent={(x) => x.product.brand} />
-          <DataTableCell getContent={(x) => x.product.color} />
+          <DataTableCell getContent={(x) => x.product?.title} />
+          <DataTableCell getContent={(x) => `$${x.product?.price}`} />
+          <DataTableCell getContent={(x) => x?.count} />
+          <DataTableCell getContent={(x) => x.product?.brand} />
+          <DataTableCell getContent={(x) => x.product?.color} />
         </TableBody>
       </Table>
 
       <Text style={styles.text}>
         <Text>
           Date: {"               "}
-          {new Date(order.paymentIntent.created * 1000).toLocaleString()}
+          {new Date(order?.paymentIntent?.created * 1000).toLocaleString()}
         </Text>
         {"\n"}
         <Text>
           Order Id: {"         "}
-          {order.paymentIntent.id}
+          {order?.paymentIntent?.id}
         </Text>
         {"\n"}
         <Text>
           Order Status: {"  "}
-          {order.orderStatus}
+          {order?.orderStatus}
         </Text>
         {"\n"}
         <Text>
           Total Paid: {"       "}
-           {(order.paymentIntent.amount / 100).toLocaleString("en-US", {
+           {(order?.paymentIntent?.amount / 100).toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}

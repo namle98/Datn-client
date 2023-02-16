@@ -33,14 +33,14 @@ function Orders({ orders, handleStatusChange }: any) {
         {order.products.map((p: any, i: any) => (
           <tr key={i}>
             <td>
-              <b>{p.product.title}</b>
+              <b>{p.product?.title}</b>
             </td>
-            <td>{p.product.price}</td>
-            <td>{p.product.brand}</td>
-            <td>{p.color}</td>
-            <td>{p.count}</td>
+            <td>{p.product?.price}</td>
+            <td>{p.product?.brand}</td>
+            <td>{p?.color}</td>
+            <td>{p?.count}</td>
             <td>
-              {p.product.shipping === "Yes" ? (
+              {p.product?.shipping === "Yes" ? (
                 <CheckCircleOutlined style={{ color: "green" }} />
               ) : (
                 <CloseCircleOutlined style={{ color: "red" }} />
