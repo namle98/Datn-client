@@ -201,73 +201,71 @@ function Checkout() {
     <div className="page-content mt-3">
       <div className="checkout">
         <div className="container">
-          <form onSubmit={saveAddressToDb}>
-            <div className="row">
-              <div className="col-md-7">
-                {showAddress()}
-                <div className="checkout-discount">{showApplyCoupon()}</div>
-              </div>
-              {/* End .col-lg-9 */}
-              <aside className="col-md-5">
-                <div className="summary">
-                  <h3 className="summary-title">Your Order</h3>
+          <div className="row">
+            <div className="col-md-7">
+              {showAddress()}
+              <div className="checkout-discount">{showApplyCoupon()}</div>
+            </div>
+            {/* End .col-lg-9 */}
+            <aside className="col-md-5">
+              <div className="summary">
+                <h3 className="summary-title">Your Order</h3>
 
-                  <table className="table table-summary">
-                    <thead>
-                      <tr>
-                        <th>Product</th>
-                        <th>Count</th>
-                        <th>Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {showProductSummary()}
+                <table className="table table-summary">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Count</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {showProductSummary()}
+                    <tr className="summary-total">
+                      <td>Total Payable:</td>
+                      <td>${total}</td>
+                    </tr>
+                    {totalAfterDiscount > 0 && (
                       <tr className="summary-total">
-                        <td>Total Payable:</td>
-                        <td>${total}</td>
+                        <td>Discount Applied: Total Payable:</td>
+                        <td>${totalAfterDiscount}</td>
                       </tr>
-                      {totalAfterDiscount > 0 && (
-                        <tr className="summary-total">
-                          <td>Discount Applied: Total Payable:</td>
-                          <td>${totalAfterDiscount}</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                  <div className="row">
-                    <div className="col-md-6">
-                      {COD ? (
-                        <button
-                          className="btn btn-outline-primary-2 mt-2"
-                          disabled={!addressSaved || !products.length}
-                          onClick={createCashOrder}
-                        >
-                          Place Order
-                        </button>
-                      ) : (
-                        <button
-                          className="btn btn-outline-primary-2 mt-2"
-                          disabled={!addressSaved || !products.length}
-                          onClick={() => navigate("/payment")}
-                        >
-                          Place Order
-                        </button>
-                      )}
-                    </div>
-                    <div className="col-md-6">
+                    )}
+                  </tbody>
+                </table>
+                <div className="row">
+                  <div className="col-md-6">
+                    {COD ? (
                       <button
-                        disabled={!products.length}
-                        onClick={emptyCart}
                         className="btn btn-outline-primary-2 mt-2"
+                        disabled={!addressSaved || !products.length}
+                        onClick={createCashOrder}
                       >
-                        Empty Cart
+                        Place Order
                       </button>
-                    </div>
+                    ) : (
+                      <button
+                        className="btn btn-outline-primary-2 mt-2"
+                        disabled={!addressSaved || !products.length}
+                        onClick={() => navigate("/payment")}
+                      >
+                        Place Order
+                      </button>
+                    )}
+                  </div>
+                  <div className="col-md-6">
+                    <button
+                      disabled={!products.length}
+                      onClick={emptyCart}
+                      className="btn btn-outline-primary-2 mt-2"
+                    >
+                      Empty Cart
+                    </button>
                   </div>
                 </div>
-              </aside>
-            </div>
-          </form>
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
     </div>

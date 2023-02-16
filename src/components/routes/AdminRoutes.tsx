@@ -6,14 +6,17 @@ import { currentAdmin } from "../../utils/auth";
 import LoadingToRedirect from "./LoadingToRedirect";
 
 function AdminRoutes() {
-  let { auth } = useAuth();
+  let { auth, logout } = useAuth();
   const [checkAdmin, setCheckAdmin] = useState(false);
 
   useEffect(() => {
     if (auth && auth.idToken) {
       currentAdmin(auth.idToken)
         .then((res: AxiosResponse) => setCheckAdmin(true))
-        .catch((err: any) => setCheckAdmin(false));
+        .catch((err: any) => {
+          setCheckAdmin(false);
+          logout();
+        });
     }
   }, [auth]);
 

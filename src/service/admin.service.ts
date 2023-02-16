@@ -6,6 +6,12 @@ export const getOrders = async (authtoken: any) =>
       authtoken,
     },
   });
+export const getUsers = async (authtoken: any) =>
+  http.get(`admin/users`, {
+    headers: {
+      authtoken,
+    },
+  });
 
 export const changeStatus = async (
   orderId: string,

@@ -153,7 +153,7 @@ function ProductCreateForm({
               name="price"
               value={price}
               onChange={handleChange}
-              type="text"
+              type="number"
               className="form-control"
               required
             />
@@ -176,7 +176,7 @@ function ProductCreateForm({
               name="quantity"
               value={quantity}
               onChange={handleChange}
-              type="text"
+              type="number"
               className="form-control"
               required
             />

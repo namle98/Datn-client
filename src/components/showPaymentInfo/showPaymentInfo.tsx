@@ -1,4 +1,13 @@
-function ShowPaymentInfo({ order, showStatus = true }: any) {
+function ShowPaymentInfo({ users, order, showStatus = true }: any) {
+  const newOrders = () => {
+    const user = users?.find((u: any) => u._id === order.orderdBy);
+    if (user) {
+      return { ...order, address: user.address, phone: user.phone };
+    } else {
+      return order;
+    }
+  };
+
   return (
     <div>
       <p className="text-center">
@@ -23,6 +32,19 @@ function ShowPaymentInfo({ order, showStatus = true }: any) {
           {new Date(order.paymentIntent.created * 1000).toLocaleString()}
         </span>
         {" / "}
+        {newOrders()?.address && (
+          <>
+            <span>Address: {newOrders()?.address.toUpperCase()}</span>
+            {" / "}
+          </>
+        )}
+        {newOrders()?.phone && (
+          <>
+            <span>Phone: {newOrders()?.phone.toUpperCase()}</span>
+            {" / "}
+          </>
+        )}
+
         <br />
         {showStatus && (
           <span className="badge bg-primary text-white">

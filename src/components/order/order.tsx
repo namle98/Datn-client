@@ -1,9 +1,21 @@
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import React from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+
+import { getUsers } from "../../service/admin.service";
 import ShowPaymentInfo from "../showPaymentInfo/showPaymentInfo";
+import Invoice from "./invoice";
 import "./styles.scss";
 
 function Orders({ orders, handleStatusChange }: any) {
+  const { auth } = useAuth();
+  const [users, setUser] = useState<any>([]);
+
+  useEffect(() => {
+    getUsers(auth?.idToken).then((res) => setUser(res.data));
+  }, []);
+
   const showOrderInTable = (order: any) => (
     <table className="table table-bordered">
       <thead className="thead-light">
@@ -40,12 +52,22 @@ function Orders({ orders, handleStatusChange }: any) {
     </table>
   );
 
+  const showDownloadLink = (order: any) => (
+    <PDFDownloadLink
+      document={<Invoice order={order} />}
+      fileName="invoice.pdf"
+      className="btn btn-sm btn-block btn-outline-primary"
+    >
+      Download PDF
+    </PDFDownloadLink>
+  );
+
   return (
     <div className="order-component">
       {orders.map((order: any) => (
         <div key={order._id} className="pb-5">
           <div className="btn btn-block bg-light row not-margin-row">
-            <ShowPaymentInfo order={order} showStatus={false} />
+            <ShowPaymentInfo users={users} order={order} showStatus={false} />
 
             <div className="row center-status">
               <div className="col-md-5">Delivery Status</div>
@@ -70,6 +92,9 @@ function Orders({ orders, handleStatusChange }: any) {
           </div>
 
           {showOrderInTable(order)}
+          <div className="row">
+            <div className="col">{showDownloadLink(order)}</div>
+          </div>
         </div>
       ))}
     </div>

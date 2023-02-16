@@ -1,6 +1,7 @@
 import { Form, Select } from "antd";
 import { FormInstance, useForm } from "antd/es/form/Form";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import AdminNav from "../../../components/adminNav";
 import FilesUpload from "../../../components/filesUpload";
@@ -91,6 +92,7 @@ function ProductCreate() {
   const [values, setValues] = useState(initialState);
   const [subOptions, setSubOptions] = useState([]);
   const [showSub, setShowSub] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadCategories();
@@ -103,9 +105,7 @@ function ProductCreate() {
     createProduct(values, auth?.idToken)
       .then((res) => {
         toast.success(`"${res.data.title}" is created`);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        navigate("/admin/products");
       })
       .catch((err) => {
         toast.error(err.response.data.err);
