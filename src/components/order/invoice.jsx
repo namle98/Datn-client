@@ -52,6 +52,11 @@ const Invoice = ({ order }) => (
           Order Status: {"  "}
           {order?.orderStatus}
         </Text>
+          {"\n"}
+        <Text>
+          Order By: {"        "}
+          {order?.orderdByName}
+        </Text>
                 {"\n"}
         <Text>
           Phone: {"            "}

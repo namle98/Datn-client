@@ -28,6 +28,11 @@ function ShowPaymentInfo({ users, order, showStatus = true }: any) {
         <span>Payment: {order.paymentIntent.status.toUpperCase()}</span>
         {" / "}
         <span>
+          Orderd By:{" / "}
+          {order?.orderdByName?.toUpperCase()}
+        </span>
+        {" / "}
+        <span>
           Orderd on:{" / "}
           {new Date(order.paymentIntent.created * 1000).toLocaleString()}
         </span>
