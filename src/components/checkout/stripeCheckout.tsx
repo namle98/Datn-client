@@ -26,6 +26,9 @@ function StripeCheckout() {
   const stripe = useStripe();
   const elements = useElements();
 
+  let phone = localStorage.getItem("phone");
+  let address = localStorage.getItem("address");
+
   useEffect(() => {
     createPaymentIntent(auth?.idToken, coupon).then((res) => {
       console.log("create payment intent", res.data);
@@ -58,24 +61,28 @@ function StripeCheckout() {
       } else {
         // here you get result after successful payment
         // create order and save in database for admin to process
-        createOrder(payload, auth?.idToken).then((res) => {
-          if (res.data.ok) {
-            // empty cart from local storage
-            if (typeof window !== "undefined") localStorage.removeItem("cart");
-            // empty cart from redux
-            dispatch({
-              type: "ADD_TO_CART",
-              payload: [],
-            });
-            // reset coupon to false
-            dispatch({
-              type: "COUPON_APPLIED",
-              payload: false,
-            });
-            // empty cart from database
-            emptyUserCart(auth?.idToken);
-          }
-        });
+        if (phone && address) {
+          createOrder(payload, phone, address, auth?.idToken).then((res) => {
+            if (res.data.ok) {
+              // empty cart from local storage
+              if (typeof window !== "undefined")
+                localStorage.removeItem("cart");
+              // empty cart from redux
+              dispatch({
+                type: "ADD_TO_CART",
+                payload: [],
+              });
+              // reset coupon to false
+              dispatch({
+                type: "COUPON_APPLIED",
+                payload: false,
+              });
+              // empty cart from database
+              emptyUserCart(auth?.idToken);
+            }
+          });
+        }
+
         // empty user cart from redux store and local storage
         console.log(JSON.stringify(payload, null, 4));
         setError("");

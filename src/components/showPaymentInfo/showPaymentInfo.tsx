@@ -1,12 +1,12 @@
 function ShowPaymentInfo({ users, order, showStatus = true }: any) {
-  const newOrders = () => {
-    const user = users?.find((u: any) => u._id === order.orderdBy);
-    if (user) {
-      return { ...order, address: user.address, phone: user.phone };
-    } else {
-      return order;
-    }
-  };
+  // const newOrders = () => {
+  //   const user = users?.find((u: any) => u._id === order.orderdBy);
+  //   if (user) {
+  //     return { ...order, address: user.address, phone: user.phone };
+  //   } else {
+  //     return order;
+  //   }
+  // };
 
   return (
     <div>
@@ -32,15 +32,15 @@ function ShowPaymentInfo({ users, order, showStatus = true }: any) {
           {new Date(order.paymentIntent.created * 1000).toLocaleString()}
         </span>
         {" / "}
-        {newOrders()?.address && (
+        {order?.address && (
           <>
-            <span>Address: {newOrders()?.address.toUpperCase()}</span>
+            <span>Address: {order?.address.toUpperCase()}</span>
             {" / "}
           </>
         )}
-        {newOrders()?.phone && (
+        {order?.phone && (
           <>
-            <span>Phone: {newOrders()?.phone.toUpperCase()}</span>
+            <span>Phone: {order?.phone.toUpperCase()}</span>
             {" / "}
           </>
         )}

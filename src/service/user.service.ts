@@ -51,10 +51,15 @@ export const applyCoupon = (authtoken: any, coupon: string) =>
     }
   );
 
-export const createOrder = (stripeResponse: any, authtoken: any) =>
+export const createOrder = (
+  stripeResponse: any,
+  phone: string,
+  address: string,
+  authtoken: any
+) =>
   http.post(
     `user/order`,
-    { stripeResponse },
+    { stripeResponse, phone, address },
     {
       headers: {
         authtoken,
@@ -101,11 +106,13 @@ export const addToWishlist = (productId: string, authtoken: any) =>
 export const createCashOrderForUser = (
   authtoken: any,
   COD: any,
-  couponTrueOrFalse: any
+  couponTrueOrFalse: any,
+  phone: string,
+  address: string
 ) =>
   http.post(
     `user/cash-order`,
-    { couponApplied: couponTrueOrFalse, COD },
+    { couponApplied: couponTrueOrFalse, COD, phone, address },
     {
       headers: {
         authtoken,

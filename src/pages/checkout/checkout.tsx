@@ -113,13 +113,13 @@ function Checkout() {
         className="form-control"
         required
       />
-      <button
+      {/* <button
         disabled={!phone || !address}
         className="btn btn-outline-primary-2 mt-2"
         onClick={saveAddressToDb}
       >
         Save
-      </button>
+      </button> */}
     </>
   );
 
@@ -163,38 +163,48 @@ function Checkout() {
     </>
   );
 
+  const checkoutWithPayment = () => {
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("address", address);
+    navigate("/payment");
+  };
+
   const createCashOrder = () => {
-    createCashOrderForUser(auth?.idToken, COD, couponTrueOrFalse).then(
-      (res) => {
-        console.log("USER CASH ORDER CREATED RES ", res);
-        // empty cart form redux, local Storage, reset coupon, reset COD, redirect
-        if (res.data.ok) {
-          // empty local storage
-          if (typeof window !== "undefined") localStorage.removeItem("cart");
-          // empty redux cart
-          dispatch({
-            type: "ADD_TO_CART",
-            payload: [],
-          });
-          // empty redux coupon
-          dispatch({
-            type: "COUPON_APPLIED",
-            payload: false,
-          });
-          // empty redux COD
-          dispatch({
-            type: "COD",
-            payload: false,
-          });
-          // mepty cart from backend
-          emptyUserCart(auth?.idToken);
-          // redirect
-          setTimeout(() => {
-            navigate("/user/history");
-          }, 1000);
-        }
+    createCashOrderForUser(
+      auth?.idToken,
+      COD,
+      couponTrueOrFalse,
+      phone,
+      address
+    ).then((res) => {
+      console.log("USER CASH ORDER CREATED RES ", res);
+      // empty cart form redux, local Storage, reset coupon, reset COD, redirect
+      if (res.data.ok) {
+        // empty local storage
+        if (typeof window !== "undefined") localStorage.removeItem("cart");
+        // empty redux cart
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: [],
+        });
+        // empty redux coupon
+        dispatch({
+          type: "COUPON_APPLIED",
+          payload: false,
+        });
+        // empty redux COD
+        dispatch({
+          type: "COD",
+          payload: false,
+        });
+        // mepty cart from backend
+        emptyUserCart(auth?.idToken);
+        // redirect
+        setTimeout(() => {
+          navigate("/user/history");
+        }, 1000);
       }
-    );
+    });
   };
 
   return (
@@ -238,7 +248,7 @@ function Checkout() {
                     {COD ? (
                       <button
                         className="btn btn-outline-primary-2 mt-2"
-                        disabled={!addressSaved || !products.length}
+                        disabled={!address || !phone || !products.length}
                         onClick={createCashOrder}
                       >
                         Place Order
@@ -246,8 +256,8 @@ function Checkout() {
                     ) : (
                       <button
                         className="btn btn-outline-primary-2 mt-2"
-                        disabled={!addressSaved || !products.length}
-                        onClick={() => navigate("/payment")}
+                        disabled={!address || !phone || !products.length}
+                        onClick={checkoutWithPayment}
                       >
                         Place Order
                       </button>
