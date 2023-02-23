@@ -15,10 +15,10 @@ import ProductUpdateForm from "./productUpdateForm";
 
 const colorOption = [
   { value: "Black", label: "Black" },
-  { value: "Brown", label: "Brown" },
+  { value: "Gray", label: "Gray" },
   { value: "Silver", label: "Silver" },
   { value: "White", label: "White" },
-  { value: "Blue", label: "Blue" },
+  { value: "Yellow", label: "Yellow" },
 ];
 const brandOption = [
   { value: "Apple", label: "Apple" },

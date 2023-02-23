@@ -41,10 +41,10 @@ function Shop() {
   const [brand, setBrand] = useState("");
   const [colors, setColors] = useState([
     "Black",
-    "Brown",
+    "Gray",
     "Silver",
     "White",
-    "Blue",
+    "Yellow",
   ]);
   const [color, setColor] = useState("");
   const [chips, setChips] = useState([

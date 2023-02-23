@@ -6,10 +6,18 @@ import AdminNav from "../../../components/adminNav";
 import { getAllProducts } from "../../../service/product.service";
 import PieChart from "./pieChart";
 import "./styles.scss";
+import ModalImage from "react-modal-image";
+import laptop from "../../../images/laptop.png";
+
+interface IMG {
+  public_id: string;
+  url: string;
+}
 
 interface DataType {
   title: string;
   slug: string;
+  images: Array<IMG> | [];
 }
 
 function Dashboard() {
@@ -23,9 +31,28 @@ function Dashboard() {
 
   const columns: ColumnsType<DataType> = [
     {
+      title: "Image",
+      dataIndex: "images",
+      key: "images",
+      // width: "70%",
+      render: (_, record) => (
+        <td>
+          {record.images.length ? (
+            <ModalImage
+              small={record.images[0].url}
+              large={record.images[0].url}
+            />
+          ) : (
+            <ModalImage small={laptop} large={laptop} />
+          )}
+        </td>
+      ),
+    },
+    {
       title: "Product Name",
       dataIndex: "title",
       key: "title",
+      width: "90%",
       render: (_, record) => (
         <td>
           <Link to={`/admin/product/${record.slug}`}>{record.title}</Link>

@@ -7,11 +7,18 @@ import UserNav from "../../../components/userNav/userNav";
 import useAuth from "../../../hooks/useAuth";
 import { getWishlist, removeWishlist } from "../../../service/user.service";
 import "./styles.scss";
+import ModalImage from "react-modal-image";
+import laptop from "../../../images/laptop.png";
 
+interface IMG {
+  public_id: string;
+  url: string;
+}
 interface DataType {
   _id: string;
   title: string;
   slug: string;
+  images: Array<IMG> | [];
   createdAt: string;
 }
 
@@ -48,6 +55,24 @@ function WishList() {
   };
 
   const columns: ColumnsType<DataType> = [
+    {
+      title: "Image",
+      dataIndex: "images",
+      key: "images",
+      // width: "70%",
+      render: (_, record) => (
+        <td>
+          {record.images.length ? (
+            <ModalImage
+              small={record.images[0].url}
+              large={record.images[0].url}
+            />
+          ) : (
+            <ModalImage small={laptop} large={laptop} />
+          )}
+        </td>
+      ),
+    },
     {
       title: "Title",
       dataIndex: "title",
