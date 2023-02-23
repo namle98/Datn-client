@@ -148,9 +148,10 @@ function ProductUpdateForm({
               name="price"
               value={price}
               onChange={handleChange}
-              type="text"
+              type="number"
               className="form-control"
               required
+              min={0}
             />
           </div>
         </Form.Item>
@@ -171,9 +172,10 @@ function ProductUpdateForm({
               name="quantity"
               value={quantity}
               onChange={handleChange}
-              type="text"
+              type="number"
               className="form-control"
               required
+              min={0}
             />
           </div>
         </Form.Item>

@@ -148,6 +148,7 @@ function ProductCreateForm({
               type="number"
               className="form-control"
               required
+              min={0}
             />
           </div>
         </Form.Item>
@@ -171,6 +172,7 @@ function ProductCreateForm({
               type="number"
               className="form-control"
               required
+              min={0}
             />
           </div>
         </Form.Item>

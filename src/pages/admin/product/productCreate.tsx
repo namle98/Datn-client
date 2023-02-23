@@ -106,6 +106,7 @@ function ProductCreate() {
       .then((res) => {
         toast.success(`"${res.data.title}" is created`);
         navigate("/admin/products");
+        setValues(initialState);
       })
       .catch((err) => {
         toast.error(err.response.data.err);
