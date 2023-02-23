@@ -49,13 +49,13 @@ function PieChart() {
   };
 
   const dataBrand = {
-    labels: ["Apple", "Microsoft", "LG", "Asus", "Lenovo"],
+    labels: ["Apple", "Dell", "LG", "Asus", "Lenovo"],
     datasets: [
       {
         label: "Amount sold",
         data: [
           numberBrandSold("Apple"),
-          numberBrandSold("Microsoft"),
+          numberBrandSold("Dell"),
           numberBrandSold("LG"),
           numberBrandSold("Asus"),
           numberBrandSold("Lenovo"),

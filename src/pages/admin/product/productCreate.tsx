@@ -25,7 +25,7 @@ const colorOption = [
 const brandOption = [
   { value: "Apple", label: "Apple" },
   { value: "LG", label: "LG" },
-  { value: "Microsoft", label: "Microsoft" },
+  { value: "Dell", label: "Dell" },
   { value: "Lenovo", label: "Lenovo" },
   { value: "ASUS", label: "ASUS" },
 ];

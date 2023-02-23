@@ -34,7 +34,7 @@ function Shop() {
   const [brands, setBrands] = useState([
     "Apple",
     "LG",
-    "Microsoft",
+    "Dell",
     "Lenovo",
     "ASUS",
   ]);
