@@ -284,7 +284,12 @@ function CouponCreate() {
                     ]}
                   >
                     <div className="form-group">
-                      <label htmlFor="singin-password-2">Name *</label>
+                      <label
+                        htmlFor="singin-password-2"
+                        style={{ display: "flex" }}
+                      >
+                        <div style={{ color: "#ff4d4f" }}>* </div> &nbsp;Name :
+                      </label>
                       <input type="text" className="form-control" required />
                     </div>
                   </Form.Item>
@@ -298,13 +303,25 @@ function CouponCreate() {
                     ]}
                   >
                     <div className="form-group">
-                      <label htmlFor="singin-password-2">Discount *</label>
+                      <label
+                        htmlFor="singin-password-2"
+                        style={{ display: "flex" }}
+                      >
+                        <div style={{ color: "#ff4d4f" }}>* </div>{" "}
+                        &nbsp;Discount :
+                      </label>
                       <input type="text" className="form-control" required />
                     </div>
                   </Form.Item>
                   <Form.Item name="expiry">
                     <div className="form-group select-expiry-date">
-                      <label htmlFor="singin-password-2">Expiry *</label>
+                      <label
+                        htmlFor="singin-password-2"
+                        style={{ display: "flex" }}
+                      >
+                        <div style={{ color: "#ff4d4f" }}>* </div> &nbsp;Expiry
+                        :
+                      </label>
                       <DatePicker onChange={handleChangeExpiry} />
                     </div>
                   </Form.Item>

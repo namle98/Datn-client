@@ -63,15 +63,7 @@ function ProductCreateForm({
   const [disabledSave, setDisabledSave] = useState(false);
 
   useEffect(() => {
-    const isDisabled =
-      !title ||
-      !description ||
-      !price ||
-      !quantity ||
-      !category ||
-      !brand ||
-      !color ||
-      !shipping;
+    const isDisabled = !title || !description || !price;
     setDisabledSave(isDisabled);
   }, [values]);
 
@@ -101,7 +93,7 @@ function ProductCreateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Product Name :
+              <div style={{ color: "#ff4d4f" }}>* </div>&nbsp;Product Name :
             </label>
             <input
               name="title"
@@ -124,7 +116,7 @@ function ProductCreateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div> Description :
+              <div style={{ color: "#ff4d4f" }}>* </div>&nbsp; Description :
             </label>
             <input
               name="description"
@@ -147,7 +139,7 @@ function ProductCreateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div> Price :
+              <div style={{ color: "#ff4d4f" }}>* </div>&nbsp; Price :
             </label>
             <input
               name="price"
@@ -161,16 +153,16 @@ function ProductCreateForm({
         </Form.Item>
         <Form.Item
           name="quantity"
-          rules={[
-            {
-              required: true,
-              message: "Please input Quantity!",
-            },
-          ]}
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: "Please input Quantity!",
+          //   },
+          // ]}
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div> Quantity :
+              Quantity :
             </label>
             <input
               name="quantity"
@@ -185,12 +177,12 @@ function ProductCreateForm({
         <Form.Item
           name="category"
           label="Category"
-          rules={[
-            {
-              required: true,
-              message: "Please select a option",
-            },
-          ]}
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: "Please select a option",
+          //   },
+          // ]}
         >
           <Select
             placeholder="Select a option and change input text above"
@@ -226,12 +218,12 @@ function ProductCreateForm({
         <Form.Item
           name="brand"
           label="Brand"
-          rules={[
-            {
-              required: true,
-              message: "Please select a option",
-            },
-          ]}
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: "Please select a option",
+          //   },
+          // ]}
         >
           <Select
             placeholder="Select a option and change input text above"
@@ -280,12 +272,12 @@ function ProductCreateForm({
         <Form.Item
           name="color"
           label="Color"
-          rules={[
-            {
-              required: true,
-              message: "Please select a option",
-            },
-          ]}
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: "Please select a option",
+          //   },
+          // ]}
         >
           <Select
             placeholder="Select a option and change input text above"
@@ -298,12 +290,12 @@ function ProductCreateForm({
         <Form.Item
           name="shipping"
           label="Shipping"
-          rules={[
-            {
-              required: true,
-              message: "Please select a option",
-            },
-          ]}
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: "Please select a option",
+          //   },
+          // ]}
         >
           <Select
             value={shipping}

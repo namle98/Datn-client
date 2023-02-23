@@ -318,7 +318,13 @@ function CategoryCreate() {
                     ]}
                   >
                     <div className="form-group">
-                      <label htmlFor="singin-password-2">New Category *</label>
+                      <label
+                        htmlFor="singin-password-2"
+                        style={{ display: "flex" }}
+                      >
+                        <div style={{ color: "#ff4d4f" }}>* </div> &nbsp;New
+                        Category :
+                      </label>
                       <input type="text" className="form-control" required />
                     </div>
                   </Form.Item>

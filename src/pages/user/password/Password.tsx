@@ -73,7 +73,13 @@ function Password() {
                     hasFeedback
                   >
                     <div className="form-group">
-                      <label htmlFor="singin-password-2">New Password *</label>
+                      <label
+                        htmlFor="singin-password-2"
+                        style={{ display: "flex" }}
+                      >
+                        <div style={{ color: "#ff4d4f" }}>* </div> &nbsp;New
+                        Password:
+                      </label>
                       <input
                         type="password"
                         className="form-control"
@@ -106,8 +112,12 @@ function Password() {
                     ]}
                   >
                     <div className="form-group">
-                      <label htmlFor="singin-password-2">
-                        Confirm New Password *
+                      <label
+                        htmlFor="singin-password-2"
+                        style={{ display: "flex" }}
+                      >
+                        <div style={{ color: "#ff4d4f" }}>* </div> &nbsp;Confirm
+                        New Password:
                       </label>
                       <input
                         type="password"

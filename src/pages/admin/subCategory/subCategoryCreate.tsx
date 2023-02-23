@@ -393,7 +393,7 @@ function SubCategoryCreate() {
                         htmlFor="singin-password-2"
                         style={{ display: "flex" }}
                       >
-                        <div style={{ color: "#ff4d4f" }}>* </div> New Sub
+                        <div style={{ color: "#ff4d4f" }}>* </div> &nbsp;New Sub
                         Category :
                       </label>
                       <input type="text" className="form-control" required />

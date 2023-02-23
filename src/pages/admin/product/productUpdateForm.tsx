@@ -66,15 +66,7 @@ function ProductUpdateForm({
   const [disabledSave, setDisabledSave] = useState(false);
 
   useEffect(() => {
-    const isDisabled =
-      !title ||
-      !description ||
-      !price ||
-      !quantity ||
-      !category ||
-      !brand ||
-      !color ||
-      !shipping;
+    const isDisabled = !title || !description || !price;
     setDisabledSave(isDisabled);
   }, [values]);
 
@@ -104,7 +96,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Product Name :
+              <div style={{ color: "#ff4d4f" }}>* </div> &nbsp;Product Name :
             </label>
             <input
               name="title"
@@ -127,7 +119,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div> Description :
+              <div style={{ color: "#ff4d4f" }}>* </div>&nbsp; Description :
             </label>
             <input
               name="description"
@@ -150,7 +142,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div> Price :
+              <div style={{ color: "#ff4d4f" }}>* </div>&nbsp; Price :
             </label>
             <input
               name="price"
@@ -173,7 +165,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div> Quantity :
+              Quantity :
             </label>
             <input
               name="quantity"
@@ -197,7 +189,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Category :
+              Category :
             </label>
             <Select
               placeholder="Select a option and change input text above"
@@ -249,7 +241,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Brand :
+              Brand :
             </label>
             <Select
               placeholder="Select a option and change input text above"
@@ -263,7 +255,7 @@ function ProductUpdateForm({
         <Form.Item name="chip">
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Chip :
+              Chip :
             </label>
             <Select
               placeholder="Select a option and change input text above"
@@ -277,7 +269,7 @@ function ProductUpdateForm({
         <Form.Item name="ram">
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Ram :
+              Ram :
             </label>
             <Select
               placeholder="Select a option and change input text above"
@@ -291,7 +283,7 @@ function ProductUpdateForm({
         <Form.Item name="rom">
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Rom :
+              Rom :
             </label>
             <Select
               placeholder="Select a option and change input text above"
@@ -305,7 +297,7 @@ function ProductUpdateForm({
         <Form.Item name="display">
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Display :
+              Display :
             </label>
             <Select
               placeholder="Select a option and change input text above"
@@ -328,7 +320,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Color :
+              Color :
             </label>
             <Select
               placeholder="Select a option and change input text above"
@@ -351,7 +343,7 @@ function ProductUpdateForm({
         >
           <div className="form-group">
             <label htmlFor="singin-password-2" style={{ display: "flex" }}>
-              <div style={{ color: "#ff4d4f" }}>* </div>Shipping :
+              Shipping :
             </label>
             <Select
               value={shipping}
