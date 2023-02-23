@@ -13,6 +13,8 @@ import Laptop from "../../images/laptop.png";
 import RatingModal from "../modal/ratingModal";
 import ProductListItems from "./productListItem";
 import ImageSlider from "../imageSlider/imageSlider";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 interface PropsParam {
   product: any;
@@ -114,8 +116,12 @@ function SingleProduct({ product, onStarClick, star }: PropsParam) {
     <>
       <div className="col-lg-7">
         {images && images.length ? (
-          <ImageSlider images={images} />
+          <Carousel showArrows={true} autoPlay infiniteLoop>
+            {images &&
+              images.map((i: any) => <img src={i.url} key={i.public_id} />)}
+          </Carousel>
         ) : (
+          // <ImageSlider images={images} />
           //   {images &&
           //     images.map((i: any) => <img src={i.url} key={i.public_id} />)}
           // </ImageSlider>
