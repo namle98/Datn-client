@@ -33,7 +33,7 @@ function Shop() {
   const [productsCount, setProductsCount] = useState(0);
   const [brands, setBrands] = useState([
     "Apple",
-    "Samsung",
+    "LG",
     "Microsoft",
     "Lenovo",
     "ASUS",
