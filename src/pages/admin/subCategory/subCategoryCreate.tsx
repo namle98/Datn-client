@@ -89,6 +89,7 @@ function SubCategoryCreate() {
     getSubCategories().then((s) => setSubCategories(s.data));
 
   const createSubCategory = (e: any) => {
+    setLoading(true);
     createSubCategories(
       { name: e.subCategory, parent: e.category },
       auth?.idToken
