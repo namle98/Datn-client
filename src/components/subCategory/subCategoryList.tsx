@@ -18,7 +18,10 @@ function SubCategoryList() {
 
   const showSubs = () =>
     subs?.map((s: any) => (
-      <Link to={`/sub/${s.slug}`} className="col btn btn-lg m-3">
+      <Link
+        to={`/sub/${s.slug}`}
+        className="col btn btn-outline-primary-2 m-3 rounded"
+      >
         <div key={s._id}>{s.name}</div>
       </Link>
     ));

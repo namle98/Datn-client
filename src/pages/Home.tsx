@@ -5,10 +5,11 @@ import BestSellers from "../components/home/bestSellers";
 import CategoryList from "../components/category/categoryList";
 import SubCategoryList from "../components/subCategory/subCategoryList";
 import Banner from "../components/banner/banner";
+import "./styles.scss";
 
 function Home() {
   return (
-    <>
+    <div className="home-page-user">
       <div className="container">
         <div className="jumbotron text-danger h1 font-weight-bold text-center">
           <Jumbotron
@@ -40,7 +41,7 @@ function Home() {
         <br />
         <br />
       </div>
-    </>
+    </div>
   );
 }
 

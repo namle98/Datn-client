@@ -18,8 +18,6 @@ function PieChart() {
     getCategories().then((res) => setAllCategory(res.data));
   }, []);
 
-  console.log(allProducts);
-
   const numberBrandSold = (brand: string) => {
     const productBrand = allProducts.filter((p: any) => p.brand === brand);
     const brandSold = productBrand
