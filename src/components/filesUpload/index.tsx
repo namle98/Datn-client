@@ -7,13 +7,13 @@ interface PropsParam {
   values: any;
   setValues: (param: any) => void;
   setLoading: (param: boolean) => void;
+  clearImg?: boolean;
 }
 
-function FilesUpload({ values, setValues, setLoading }: PropsParam) {
+function FilesUpload({ clearImg, values, setValues, setLoading }: PropsParam) {
   const { auth } = useAuth();
 
   const fileUploadAndResize = (e: any) => {
-    console.log(e.target.files);
     // resize
     let files = e.target.files; // 3
     let allUploadedFiles = values.images;
@@ -58,6 +58,10 @@ function FilesUpload({ values, setValues, setLoading }: PropsParam) {
     // send back to server to upload to cloudinary
     // set url to images[] in the parent component state - ProductCreate
   };
+  if (clearImg) {
+    debugger;
+    setValues({ ...values, images: [] });
+  }
 
   const handleImageRemove = (public_id: string) => {
     setLoading(true);
@@ -85,6 +89,7 @@ function FilesUpload({ values, setValues, setLoading }: PropsParam) {
         setLoading(false);
       });
   };
+  console.log(values.images);
 
   return (
     <>

@@ -92,6 +92,7 @@ function ProductCreate() {
   const [values, setValues] = useState(initialState);
   const [subOptions, setSubOptions] = useState([]);
   const [showSub, setShowSub] = useState(false);
+  const [clearImg, setClearImg] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -104,9 +105,9 @@ function ProductCreate() {
   const createProducts = () => {
     createProduct(values, auth?.idToken)
       .then((res) => {
+        setClearImg(true);
         toast.success(`"${res.data.title}" is created`);
         navigate("/admin/products");
-        setValues(initialState);
       })
       .catch((err) => {
         toast.error(err.response.data.err);
@@ -174,6 +175,7 @@ function ProductCreate() {
               <div className="title-page">Create Product</div>
               <div className="p-3">
                 <FilesUpload
+                  clearImg={clearImg}
                   values={values}
                   setValues={setValues}
                   setLoading={setLoading}
