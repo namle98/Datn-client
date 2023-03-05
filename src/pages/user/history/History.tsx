@@ -1,25 +1,39 @@
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Pagination } from "antd";
 import { useEffect, useState } from "react";
 import Invoice from "../../../components/order/invoice";
 import ShowPaymentInfo from "../../../components/showPaymentInfo/showPaymentInfo";
 import UserNav from "../../../components/userNav/userNav";
 import useAuth from "../../../hooks/useAuth";
-import { getUserOrders } from "../../../service/user.service";
+import {
+  getUserOrders,
+  getUserOrdersCount,
+} from "../../../service/user.service";
 import "./styles.scss";
 
 function HistoryPage() {
   const { auth } = useAuth();
   const [orders, setOrders] = useState<any>([]);
+  const [allOrder, setAllOrder] = useState<any>([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     loadUserOrders();
   }, []);
 
+  useEffect(() => {
+    loadUserOrdersCount();
+  }, [page]);
+
+  const loadUserOrdersCount = () =>
+    getUserOrdersCount(page, auth?.idToken).then((res) => {
+      setOrders(res.data);
+    });
+
   const loadUserOrders = () =>
     getUserOrders(auth?.idToken).then((res) => {
-      console.log(JSON.stringify(res.data, null, 4));
-      setOrders(res.data);
+      setAllOrder(res.data);
     });
 
   const showOrderInTable = (order: any) => (
@@ -69,7 +83,7 @@ function HistoryPage() {
   );
 
   const showEachOrders = () =>
-    orders.reverse().map((order: any, i: any) => (
+    orders.map((order: any, i: any) => (
       <div key={i} className="m-5 p-3 card">
         <ShowPaymentInfo order={order} />
         {showOrderInTable(order)}
@@ -94,6 +108,14 @@ function HistoryPage() {
                   : "No purchase orders"}
 
                 {showEachOrders()}
+                <nav className="col-md-10 offset-md-2 text-center pt-5 p-3">
+                  <Pagination
+                    current={page}
+                    total={allOrder?.length}
+                    onChange={(value) => setPage(value)}
+                    pageSize={3}
+                  />
+                </nav>
               </div>
             </div>
           </div>

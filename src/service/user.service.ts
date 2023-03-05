@@ -74,6 +74,13 @@ export const getUserOrders = (authtoken: any) =>
     },
   });
 
+export const getUserOrdersCount = (page: number, authtoken: any) =>
+  http.get(`user/orders-count/${page}`, {
+    headers: {
+      authtoken,
+    },
+  });
+
 export const getWishlist = (authtoken: any) =>
   http.get(`user/wishlist`, {
     headers: {

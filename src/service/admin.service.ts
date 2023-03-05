@@ -6,6 +6,14 @@ export const getOrders = async (authtoken: any) =>
       authtoken,
     },
   });
+
+export const getOrdersCount = async (page: number, authtoken: any) =>
+  http.get(`admin/orders-count/${page}`, {
+    headers: {
+      authtoken,
+    },
+  });
+
 export const getUsers = async (authtoken: any) =>
   http.get(`admin/users`, {
     headers: {
