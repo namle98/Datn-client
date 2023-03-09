@@ -26,7 +26,7 @@ interface DataType {
 
 const dayOption: any = [
   { value: "0", label: "Today" },
-  { value: "1", label: "Last day" },
+  // { value: "1", label: "Last day" },
   { value: "7", label: "7 days ago" },
   { value: "30", label: "Last month" },
 ];
@@ -48,7 +48,6 @@ function Dashboard() {
     });
 
   const totalAmount = () => {
-    debugger;
     if (orders?.length > 0) {
       const newDate = moment().subtract(parseInt(day), "day").toISOString();
       const orderWithDate =

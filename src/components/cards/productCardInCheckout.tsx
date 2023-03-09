@@ -6,7 +6,7 @@ import ModalImage from "react-modal-image";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
-  CloseOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 
 function ProductCardInCheckout({ p }: any) {
@@ -147,7 +147,7 @@ function ProductCardInCheckout({ p }: any) {
           )}
         </td>
         <td className="text-center">
-          <CloseOutlined
+          <DeleteOutlined
             onClick={handleRemove}
             className="text-danger pointer"
           />
